@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.5
+
+- **Load your ATV Launcher settings.** Install ATV Launcher 1.7.4 or newer. In Nooko Launcher, select **Backup**, then **Load settings**. Nooko Launcher asks ATV Launcher for your settings, so no file is needed.
+
 ## 1.0.4
 
 - **Updates are found again.** The update check, the weather and the place search no longer use saved answers. Nooko Launcher always asks the web.

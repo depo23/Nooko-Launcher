@@ -84,6 +84,12 @@ internal object SettingsTransfer {
     }
 
     fun loadShared(context: Context): Map<String, Any> {
+        // This app's own backup first, then ATV Launcher's settings straight from ATV Launcher, if it is installed (Android lets no
+        // other app read the file it saved). Same signing key only.
+        if (Build.VERSION.SDK_INT >= 29) shared(context)?.let { uri ->
+            try { context.contentResolver.openInputStream(uri)?.use { input -> return decode(input.readBytes()) } } catch (_: Exception) { }
+        }
+        fromAtvLauncher(context)?.let { return it }
         // The backup service of Android 10 and newer, when this app made the file or the system lets it see it.
         if (Build.VERSION.SDK_INT >= 29) for (name in listOf(BACKUP_NAME, OLD_BACKUP_NAME)) shared(context, name)?.let { uri ->
             try { context.contentResolver.openInputStream(uri)?.use { input -> return decode(input.readBytes()) } } catch (_: Exception) { }
@@ -104,6 +110,13 @@ internal object SettingsTransfer {
         }
         throw failure
     }
+
+    /** The settings ATV Launcher hands over, or null when it is not installed, not updated yet or not signed with our key. */
+    private fun fromAtvLauncher(context: Context): Map<String, Any>? = try {
+        context.contentResolver.query(Uri.parse("content://dev.atvlauncher.backup/settings"), null, null, null, null)?.use {
+            if (it.moveToFirst()) decode(it.getBlob(0)) else null
+        }
+    } catch (_: Exception) { null }
 
     fun file(context: Context): File = File(context.externalMediaDirs.firstOrNull()
         ?: throw IOException("External media storage is unavailable"), "backup/atv-settings.json")

@@ -20,10 +20,17 @@
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
+    <!-- ATV Launcher, the app this one replaces, hands over its settings to apps signed with the same key. -->
+    <permission
+        android:name="dev.nooko.launcher.permission.READ_ATV_SETTINGS"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="dev.nooko.launcher.permission.READ_ATV_SETTINGS" />
+
     <uses-feature android:name="android.software.leanback" android:required="true" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 
     <queries>
+        <provider android:authorities="dev.atvlauncher.backup" />
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
