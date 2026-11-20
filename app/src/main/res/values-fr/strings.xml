@@ -109,7 +109,6 @@
     <string name="on">Activé</string>
     <string name="system_default">Par défaut (système)</string>
     <string name="your_photos">Vos photos</string>
-    <string name="choose_gallery_hint">Choisissez « Galerie » comme écran de veille ici</string>
     <string name="cant_dream">Cette TV ne peut pas lancer l\'écran de veille à la demande</string>
     <string name="update_check_failed">Impossible de vérifier les mises à jour. Vérifiez la connexion.</string>
     <string name="up_to_date_toast">Nooko Launcher est à jour</string>
@@ -545,4 +544,17 @@
     <string name="wh_fantasy_about">Mondes peints et scènes oniriques</string>
     <string name="tmdb_services_more">Plus de services…</string>
     <string name="tmdb_services_main">Services principaux seulement</string>
+    <string name="adb_allow_title">Laisser Nooko Launcher se configurer seul</string>
+    <string name="adb_allow_body">Android demande une autorisation unique pour cela. Nooko Launcher peut se l\'accorder lui-même grâce au débogage ADB du téléviseur. Vous n\'avez qu\'à répondre à une question sur le téléviseur.</string>
+    <string name="adb_allow_now">Autoriser maintenant</string>
+    <string name="adb_show_command">Afficher la commande adb</string>
+    <string name="adb_connecting">Connexion à ce téléviseur…</string>
+    <string name="adb_approve">À la question du téléviseur, sélectionnez Toujours autoriser, puis OK.</string>
+    <string name="adb_done">Terminé. Nooko Launcher a l\'autorisation.</string>
+    <string name="adb_off_title">Le débogage ADB est désactivé</string>
+    <string name="adb_off_body">Activez le débogage ADB : sur Fire TV, Paramètres, My Fire TV, Options pour les développeurs. Sur Google TV, Options pour les développeurs, Débogage USB. Puis sélectionnez Réessayer.</string>
+    <string name="adb_denied_title">Le téléviseur n\'a pas autorisé</string>
+    <string name="adb_denied">Sélectionnez Réessayer, puis choisissez Toujours autoriser à la question du téléviseur.</string>
+    <string name="adb_failed_title">Impossible de définir l\'autorisation</string>
+    <string name="adb_failed">Utilisez plutôt la commande adb depuis un ordinateur.</string>
 </resources>

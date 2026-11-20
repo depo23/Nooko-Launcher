@@ -99,7 +99,6 @@
     <string name="on">Açık</string>
     <string name="system_default">Sistem varsayılanı</string>
     <string name="your_photos">Fotoğraflarınız</string>
-    <string name="choose_gallery_hint">Buradan ekran koruyucu olarak \"Galeri\"yi seçin</string>
     <string name="cant_dream">Bu TV isteğe bağlı ekran koruyucu başlatmayı desteklemiyor</string>
     <string name="update_check_failed">Güncellemeler denetlenemedi. Bağlantıyı kontrol edin.</string>
     <string name="up_to_date_toast">Nooko Launcher güncel</string>
@@ -540,4 +539,17 @@
     <string name="wh_fantasy_about">Boyanmış dünyalar ve rüya gibi sahneler</string>
     <string name="tmdb_services_more">Daha fazla hizmet…</string>
     <string name="tmdb_services_main">Yalnızca ana hizmetler</string>
+    <string name="adb_allow_title">Nooko Launcher kendini ayarlasın</string>
+    <string name="adb_allow_body">Android bunun için tek seferlik bir izin ister. Nooko Launcher bunu TV\'nin ADB hata ayıklaması üzerinden kendine verebilir. TV\'de yalnızca bir soruyu yanıtlamanız yeterli.</string>
+    <string name="adb_allow_now">Şimdi izin ver</string>
+    <string name="adb_show_command">adb komutunu göster</string>
+    <string name="adb_connecting">Bu TV\'ye bağlanılıyor…</string>
+    <string name="adb_approve">TV\'deki soruda Her zaman izin ver\'i seçin, sonra OK\'e basın.</string>
+    <string name="adb_done">Tamam. Nooko Launcher izne sahip.</string>
+    <string name="adb_off_title">ADB hata ayıklaması kapalı</string>
+    <string name="adb_off_body">ADB hata ayıklamasını açın: Fire TV\'de Ayarlar, My Fire TV, Geliştirici seçenekleri. Google TV\'de Geliştirici seçenekleri, USB hata ayıklama. Sonra Tekrar dene\'yi seçin.</string>
+    <string name="adb_denied_title">TV izin vermedi</string>
+    <string name="adb_denied">Tekrar dene\'yi seçin, sonra TV\'deki soruda Her zaman izin ver\'i seçin.</string>
+    <string name="adb_failed_title">İzin ayarlanamadı</string>
+    <string name="adb_failed">Bunun yerine adb komutunu bir bilgisayardan kullanın.</string>
 </resources>

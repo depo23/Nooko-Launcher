@@ -121,7 +121,6 @@
     <string name="on">Ligado</string>
     <string name="system_default">Padrão do sistema</string>
     <string name="your_photos">Suas fotos</string>
-    <string name="choose_gallery_hint">Escolha \"Galeria\" como protetor de tela aqui</string>
     <string name="cant_dream">Esta TV não consegue iniciar o protetor de tela sob demanda</string>
     <string name="update_check_failed">Não foi possível verificar atualizações. Verifique a conexão.</string>
     <string name="up_to_date_toast">O Nooko Launcher está atualizado</string>
@@ -544,4 +543,17 @@
     <string name="wh_fantasy_about">Mundos pintados e cenas de sonho</string>
     <string name="tmdb_services_more">Mais serviços…</string>
     <string name="tmdb_services_main">Somente os serviços principais</string>
+    <string name="adb_allow_title">Deixar o Nooko Launcher se configurar sozinho</string>
+    <string name="adb_allow_body">O Android exige uma permissão única para isso. O Nooko Launcher pode concedê-la a si mesmo pela depuração ADB da TV. Você só precisa responder a uma pergunta na TV.</string>
+    <string name="adb_allow_now">Permitir agora</string>
+    <string name="adb_show_command">Mostrar o comando adb</string>
+    <string name="adb_connecting">Conectando a esta TV…</string>
+    <string name="adb_approve">Na pergunta da TV, selecione Sempre permitir e depois OK.</string>
+    <string name="adb_done">Pronto. O Nooko Launcher tem a permissão.</string>
+    <string name="adb_off_title">A depuração ADB está desativada</string>
+    <string name="adb_off_body">Ative a depuração ADB: na Fire TV, Configurações, My Fire TV, Opções do desenvolvedor. Na Google TV, Opções do desenvolvedor, Depuração USB. Depois selecione Tentar de novo.</string>
+    <string name="adb_denied_title">A TV não permitiu</string>
+    <string name="adb_denied">Selecione Tentar de novo e depois escolha Sempre permitir na pergunta da TV.</string>
+    <string name="adb_failed_title">Não foi possível definir a permissão</string>
+    <string name="adb_failed">Use o comando adb em um computador.</string>
 </resources>

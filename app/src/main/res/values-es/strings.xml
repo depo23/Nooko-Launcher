@@ -148,7 +148,6 @@
     <string name="on">Activado</string>
     <string name="system_default">Predeterminado del sistema</string>
     <string name="your_photos">Tus fotos</string>
-    <string name="choose_gallery_hint">Elige \"Galería\" como salvapantallas aquí</string>
     <string name="cant_dream">Esta TV no puede iniciar el salvapantallas bajo demanda</string>
     <string name="update_check_failed">No se pudieron buscar actualizaciones. Comprueba la conexión.</string>
     <string name="up_to_date_toast">Nooko Launcher está al día</string>
@@ -547,4 +546,17 @@
     <string name="wh_fantasy_about">Mundos pintados y escenas oníricas</string>
     <string name="tmdb_services_more">Más servicios…</string>
     <string name="tmdb_services_main">Solo los servicios principales</string>
+    <string name="adb_allow_title">Dejar que Nooko Launcher se configure solo</string>
+    <string name="adb_allow_body">Android necesita un permiso único para esto. Nooko Launcher puede concedérselo solo mediante la depuración ADB del TV. Solo tienes que responder una pregunta en el TV.</string>
+    <string name="adb_allow_now">Permitir ahora</string>
+    <string name="adb_show_command">Mostrar el comando adb</string>
+    <string name="adb_connecting">Conectando con este TV…</string>
+    <string name="adb_approve">En la pregunta del TV, selecciona Permitir siempre y luego OK.</string>
+    <string name="adb_done">Listo. Nooko Launcher tiene el permiso.</string>
+    <string name="adb_off_title">La depuración ADB está desactivada</string>
+    <string name="adb_off_body">Activa la depuración ADB: en Fire TV, Ajustes, My Fire TV, Opciones para desarrolladores. En Google TV, Opciones para desarrolladores, Depuración USB. Luego elige Reintentar.</string>
+    <string name="adb_denied_title">El TV no lo permitió</string>
+    <string name="adb_denied">Elige Reintentar y luego Permitir siempre en la pregunta del TV.</string>
+    <string name="adb_failed_title">No se pudo establecer el permiso</string>
+    <string name="adb_failed">Usa en su lugar el comando adb desde un ordenador.</string>
 </resources>

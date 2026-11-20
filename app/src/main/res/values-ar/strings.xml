@@ -99,7 +99,6 @@
     <string name="on">يعمل</string>
     <string name="system_default">افتراضي النظام</string>
     <string name="your_photos">صورك</string>
-    <string name="choose_gallery_hint">اختر \"المعرض\" شاشةً للتوقف هنا</string>
     <string name="cant_dream">لا يستطيع هذا التلفاز تشغيل شاشة التوقف عند الطلب</string>
     <string name="update_check_failed">تعذّر التحقق من التحديثات. تحقق من الاتصال.</string>
     <string name="up_to_date_toast">Nooko Launcher محدّث</string>
@@ -569,4 +568,17 @@
     <string name="wh_fantasy_about">عوالم مرسومة ومشاهد حالمة</string>
     <string name="tmdb_services_more">المزيد من الخدمات…</string>
     <string name="tmdb_services_main">الخدمات الرئيسية فقط</string>
+    <string name="adb_allow_title">دع Nooko Launcher يُعدّ نفسه</string>
+    <string name="adb_allow_body">يحتاج Android إلى إذن لمرة واحدة لذلك. يستطيع Nooko Launcher منحه لنفسه عبر تصحيح ADB في التلفزيون. كل ما عليك هو الإجابة عن سؤال واحد على التلفزيون.</string>
+    <string name="adb_allow_now">السماح الآن</string>
+    <string name="adb_show_command">عرض أمر adb</string>
+    <string name="adb_connecting">جارٍ الاتصال بهذا التلفزيون…</string>
+    <string name="adb_approve">عند سؤال التلفزيون، اختر السماح دائمًا ثم OK.</string>
+    <string name="adb_done">تم. أصبح لدى Nooko Launcher الإذن.</string>
+    <string name="adb_off_title">تصحيح ADB متوقف</string>
+    <string name="adb_off_body">شغّل تصحيح ADB: في Fire TV، الإعدادات، My Fire TV، خيارات المطور. في Google TV، خيارات المطور، تصحيح USB. ثم اختر إعادة المحاولة.</string>
+    <string name="adb_denied_title">لم يسمح التلفزيون بذلك</string>
+    <string name="adb_denied">اختر إعادة المحاولة ثم اختر السماح دائمًا عند سؤال التلفزيون.</string>
+    <string name="adb_failed_title">تعذّر ضبط الإذن</string>
+    <string name="adb_failed">استخدم أمر adb من حاسوب بدلًا من ذلك.</string>
 </resources>

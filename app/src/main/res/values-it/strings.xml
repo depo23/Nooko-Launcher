@@ -118,7 +118,6 @@
     <string name="on">Acceso</string>
     <string name="system_default">Predefinito di sistema</string>
     <string name="your_photos">Le tue foto</string>
-    <string name="choose_gallery_hint">Scegli \"Galleria\" come salvaschermo qui</string>
     <string name="cant_dream">Questa TV non può avviare il salvaschermo su richiesta</string>
     <string name="update_check_failed">Impossibile controllare gli aggiornamenti. Controlla la connessione.</string>
     <string name="up_to_date_toast">Nooko Launcher è aggiornato</string>
@@ -544,4 +543,17 @@
     <string name="wh_fantasy_about">Mondi dipinti e scene da sogno</string>
     <string name="tmdb_services_more">Altri servizi…</string>
     <string name="tmdb_services_main">Solo i servizi principali</string>
+    <string name="adb_allow_title">Lascia che Nooko Launcher si configuri da solo</string>
+    <string name="adb_allow_body">Android richiede un\'autorizzazione una tantum. Nooko Launcher può concedersela da solo tramite il debug ADB della TV. Devi solo rispondere a una domanda sulla TV.</string>
+    <string name="adb_allow_now">Consenti ora</string>
+    <string name="adb_show_command">Mostra il comando adb</string>
+    <string name="adb_connecting">Connessione a questa TV…</string>
+    <string name="adb_approve">Alla domanda della TV, seleziona Consenti sempre, poi OK.</string>
+    <string name="adb_done">Fatto. Nooko Launcher ha l\'autorizzazione.</string>
+    <string name="adb_off_title">Il debug ADB è disattivato</string>
+    <string name="adb_off_body">Attiva il debug ADB: su Fire TV, Impostazioni, My Fire TV, Opzioni sviluppatore. Su Google TV, Opzioni sviluppatore, Debug USB. Poi seleziona Riprova.</string>
+    <string name="adb_denied_title">La TV non l\'ha consentito</string>
+    <string name="adb_denied">Seleziona Riprova, poi scegli Consenti sempre alla domanda della TV.</string>
+    <string name="adb_failed_title">Impossibile impostare l\'autorizzazione</string>
+    <string name="adb_failed">Usa invece il comando adb da un computer.</string>
 </resources>

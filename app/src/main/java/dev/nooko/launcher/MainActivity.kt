@@ -1001,6 +1001,41 @@ class MainActivity : Activity() {
             getString(R.string.setup_close) to { setupDialog?.dismiss() }, frosted = true)
     }
 
+    /**
+     * Asks the TV's own adb for the one permission only adb can give (see [AdbSelf]), then runs [then]. The person turns on ADB
+     * debugging and answers one question on the TV; no computer.
+     */
+    internal fun askSecureGrant(then: () -> Unit) {
+        if (checkSelfPermission(WRITE_SECURE) == PackageManager.PERMISSION_GRANTED) return then()
+        homePopup(0, getString(R.string.adb_allow_title), getString(R.string.adb_allow_body), null,
+            getString(R.string.adb_allow_now) to { setupDialog?.dismiss(); runSecureGrant(then) },
+            getString(R.string.adb_show_command) to { adbPopup() },
+            getString(R.string.setup_not_now) to { setupDialog?.dismiss() })
+    }
+
+    private fun runSecureGrant(then: () -> Unit) {
+        toast(getString(R.string.adb_connecting), long = true, system = true)
+        val hosts = listOfNotNull("127.0.0.1", lanAddress())
+        Work.net.execute {
+            val result = AdbSelf.grant(this, WRITE_SECURE, hosts) { ui.post { toast(getString(R.string.adb_approve), long = true, system = true) } }
+            ui.post {
+                if (isDestroyed) return@post
+                when (result) {
+                    AdbSelf.Result.DONE -> { toast(getString(R.string.adb_done), long = true, system = true); then() }
+                    AdbSelf.Result.NOT_LISTENING -> homePopup(0, getString(R.string.adb_off_title), getString(R.string.adb_off_body), null,
+                        getString(R.string.setup_try_again) to { setupDialog?.dismiss(); runSecureGrant(then) },
+                        getString(R.string.adb_show_command) to { adbPopup() })
+                    AdbSelf.Result.NOT_ALLOWED -> homePopup(0, getString(R.string.adb_denied_title), getString(R.string.adb_denied), null,
+                        getString(R.string.setup_try_again) to { setupDialog?.dismiss(); runSecureGrant(then) },
+                        getString(R.string.adb_show_command) to { adbPopup() })
+                    AdbSelf.Result.FAILED -> homePopup(0, getString(R.string.adb_failed_title), getString(R.string.adb_failed), null,
+                        getString(R.string.adb_show_command) to { adbPopup() },
+                        getString(R.string.setup_close) to { setupDialog?.dismiss() })
+                }
+            }
+        }
+    }
+
     /** The one-time grant lets Nooko Launcher switch the service on itself, past the greyed-out toggle. */
     private fun adbPopup() {
         val mono = Typeface.MONOSPACE
@@ -1029,6 +1064,7 @@ class MainActivity : Activity() {
             addView(qr, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { marginStart = dp(20) })
         }
         homePopup(3, getString(R.string.setup_adb_title), getString(R.string.setup_adb_body), extra,
+            getString(R.string.adb_allow_now) to { setupDialog?.dismiss(); runSecureGrant { tryHomeService() } }, // the grant also switches the Home service on
             getString(R.string.setup_try_again) to { tryHomeService() },
             getString(R.string.setup_close) to { setupDialog?.dismiss() })
     }
@@ -3628,9 +3664,8 @@ class MainActivity : Activity() {
         prefs.edit().putString("ss_folder", folder).apply()
         if (galleryOn()) return
         if (checkSelfPermission(WRITE_SECURE) != PackageManager.PERMISSION_GRANTED) {
-            // Without the adb permission Nooko Launcher can't switch it itself; Android's own list has getString(R.string.gallery).
-            toast(getString(R.string.choose_gallery_hint), long = true, system = true)
-            return openScreensaverSettings()
+            // Without the adb permission Nooko Launcher can't switch it itself: ask for it, then switch it.
+            return askSecureGrant { useGallery(folder) }
         }
         prefs.edit().putString("prev_screensaver", currentScreensaver()).apply()
         Settings.Secure.putString(contentResolver, "screensaver_components", gallery())
@@ -3661,7 +3696,8 @@ class MainActivity : Activity() {
             val hint = label(getString(R.string.screensaver_delay_permission) + "\n\nadb shell pm grant $packageName $WRITE_SECURE", 14f)
                 .apply { maxLines = 8; ellipsize = null }
             return showPage(getString(R.string.screensaver_timing),
-                listOf(page(getString(R.string.act_settings), "") { openScreensaverSettings() }), top = hint) {
+                listOf(page(getString(R.string.adb_allow_now), "") { askSecureGrant { pickScreensaverDelay() } },
+                    page(getString(R.string.act_settings), "") { openScreensaverSettings() }), top = hint) {
                 renderSettings(R.string.screensaver_timing)
             }
         }

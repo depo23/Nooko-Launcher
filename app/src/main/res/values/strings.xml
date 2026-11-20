@@ -150,7 +150,6 @@
     <string name="on">On</string>
     <string name="system_default">System default</string>
     <string name="your_photos">Your photos</string>
-    <string name="choose_gallery_hint">Choose \"Gallery\" as the screensaver here</string>
     <string name="cant_dream">This TV can\'t start the screensaver on demand</string>
     <string name="update_check_failed">Couldn\'t check for updates. Check the connection.</string>
     <string name="up_to_date_toast">Nooko Launcher is up to date</string>
@@ -571,4 +570,17 @@
     <string name="wh_fantasy_about">Painted worlds and dreamlike scenes</string>
     <string name="tmdb_services_more">More services…</string>
     <string name="tmdb_services_main">Main services only</string>
+    <string name="adb_allow_title">Let Nooko Launcher set itself up</string>
+    <string name="adb_allow_body">Android needs a one-time permission for this. Nooko Launcher can give it to itself through the TV\'s ADB debugging. You only answer one question on the TV.</string>
+    <string name="adb_allow_now">Allow it now</string>
+    <string name="adb_show_command">Show the adb command</string>
+    <string name="adb_connecting">Connecting to this TV…</string>
+    <string name="adb_approve">On the TV question, select Always allow, then OK.</string>
+    <string name="adb_done">Done. Nooko Launcher has the permission.</string>
+    <string name="adb_off_title">ADB debugging is off</string>
+    <string name="adb_off_body">Turn on ADB debugging: on a Fire TV, Settings, My Fire TV, Developer options. On Google TV, Developer options, USB debugging. Then select Try again.</string>
+    <string name="adb_denied_title">The TV did not allow it</string>
+    <string name="adb_denied">Select Try again, then choose Always allow on the TV question.</string>
+    <string name="adb_failed_title">Could not set the permission</string>
+    <string name="adb_failed">Use the adb command from a computer instead.</string>
 </resources>
