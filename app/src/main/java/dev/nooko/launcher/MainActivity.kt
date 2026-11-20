@@ -524,6 +524,8 @@ class MainActivity : Activity() {
                 .putLong("wp_photo_light", photo).putLong("wp_photo_at_light", at)
                 .putBoolean("wp_shared", true).apply()
         }
+        // The Reddit wallpaper is now Wallhaven: Reddit stopped answering apps.
+        for (k in listOf("wp_light", "wp_dark")) if (prefs.getString(k, null) == "reddit") prefs.edit().putString(k, Wallhaven.CHOICE).apply()
         // The Cue timer icon in a saved top bar order is gone: the heart takes its place.
         prefs.getString("top_bar", null)?.takeIf { "timer" in it.split(',') }?.let { prefs.edit().putString("top_bar", it.split(',').joinToString(",") { k -> if (k == "timer") "heart" else k }).apply() }
         // One-time move to the Apple TV look: light theme, frosted glass, banner tiles five across on a shelf, a soft gradient.
@@ -655,8 +657,8 @@ class MainActivity : Activity() {
         checkUpdate(force = false)
         Bing.onChanged = bingChanged
         Bing.refresh(applicationContext, prefs)
-        Reddit.onChanged = redditChanged
-        Reddit.refresh(applicationContext, prefs)
+        Wallhaven.onChanged = wallhavenChanged
+        Wallhaven.refresh(applicationContext, prefs)
         ui.post { updateBadge() } // after layout, so the icon has its size
         if (allAppsRequested) {
             intent.removeExtra(Remap.OPEN_ALL_APPS) // consume only after initialization and any theme recreation
@@ -726,7 +728,7 @@ class MainActivity : Activity() {
         unregisterReceiver(unlockReceiver)
         if (ready) {
             if (Bing.onChanged === bingChanged) Bing.onChanged = null
-            if (Reddit.onChanged === redditChanged) Reddit.onChanged = null
+            if (Wallhaven.onChanged === wallhavenChanged) Wallhaven.onChanged = null
             unregisterReceiver(packageReceiver)
             applicationContext.getSystemService(ConnectivityManager::class.java).unregisterNetworkCallback(net)
             getSystemService(TvInputManager::class.java)?.unregisterCallback(inputCallback)
@@ -1517,7 +1519,7 @@ class MainActivity : Activity() {
 
     internal fun wallpaperName(choice: String) = when {
         choice == Bing.CHOICE -> getString(R.string.bing_daily)
-        choice == Reddit.CHOICE -> getString(R.string.reddit_wallpaper)
+        choice == Wallhaven.CHOICE -> getString(R.string.wallhaven_wallpaper)
         choice.startsWith("folder:") -> getString(R.string.folder_name, choice.substringAfter(':').substringAfter(':'))
         choice.startsWith("photo:") -> getString(R.string.wall_single_photo)
         else -> choice.substringAfter(':').substringBeforeLast('.')
@@ -1575,7 +1577,7 @@ class MainActivity : Activity() {
     internal var photoPreview: PhotoPreview? = null
 
     private val bingChanged: () -> Unit = { if (currentWallpaper() == Bing.CHOICE) loadWallpaper() }
-    private val redditChanged: () -> Unit = { if (currentWallpaper() == Reddit.CHOICE) loadWallpaper() }
+    private val wallhavenChanged: () -> Unit = { if (currentWallpaper() == Wallhaven.CHOICE) loadWallpaper() }
 
 
     private fun showKey(p: Prog) = "${p.pkg}/${p.title}/${p.image}"
@@ -1603,9 +1605,9 @@ class MainActivity : Activity() {
     /** While the home screen shows, a folder wallpaper moves on to its next photo when its time is up. */
     internal val wallpaperTick = object : Runnable {
         override fun run() {
-            if (currentWallpaper() == Bing.CHOICE || currentWallpaper() == Reddit.CHOICE) {
+            if (currentWallpaper() == Bing.CHOICE || currentWallpaper() == Wallhaven.CHOICE) {
                 Bing.refresh(applicationContext, prefs)
-                Reddit.refresh(applicationContext, prefs)
+                Wallhaven.refresh(applicationContext, prefs)
                 ui.postDelayed(this, 60_000L)
                 return
             }
@@ -2077,7 +2079,7 @@ class MainActivity : Activity() {
                 val small = BitmapFactory.Options().apply { inSampleSize = if (big) 4 else 16 }
                 when {
                     choice == Bing.CHOICE -> BitmapFactory.decodeFile(Bing.file(this@MainActivity).path, small)
-                    choice == Reddit.CHOICE -> BitmapFactory.decodeFile(Reddit.file(this@MainActivity).path, small)
+                    choice == Wallhaven.CHOICE -> BitmapFactory.decodeFile(Wallhaven.file(this@MainActivity).path, small)
                     choice.startsWith("file:") -> BitmapFactory.decodeFile(File(wallpaperDir(), choice.removePrefix("file:")).path, small)
                     choice.startsWith("photo:") -> choice.substringAfter(':').toLongOrNull()?.let { mediaPhotoThumb(it, big) }
                     choice.startsWith("folder:") -> {

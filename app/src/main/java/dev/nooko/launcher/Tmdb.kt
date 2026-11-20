@@ -77,6 +77,9 @@ internal object Tmdb {
     /** TMDB's ids for Apple TV+, Netflix, Prime Video, Max/HBO, Crunchyroll and Disney+ (a service can have more than one), shown first. */
     private val MAIN_SERVICES = listOf(350, 2, 8, 1796, 9, 119, 1899, 384, 118, 283, 337)
 
+    /** The services most people mean: Netflix, Prime Video, Disney+, Apple TV+, Max / HBO, Paramount+, Hulu, Peacock, Crunchyroll, YouTube. */
+    val CORE = setOf(8, 9, 2100, 337, 350, 1899, 384, 531, 15, 386, 387, 283, 188)
+
     data class Provider(val name: String, val logo: String, val id: Int = 0, val mine: Boolean = false)
 
     /** The country whose services are shown: the one chosen in settings, else the TV's own. */

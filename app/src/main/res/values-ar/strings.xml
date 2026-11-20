@@ -366,9 +366,7 @@
     <string name="section_tmdb">الأكثر رواجًا على TMDB</string>
     <string name="tmdb_row">مفتاح TMDB</string>
     <string name="help_tmdb">الصق مفتاح TMDB API المجاني لعرض العناوين الأكثر رواجًا هذا الأسبوع فوق التطبيقات. احصل على مفتاح من themoviedb.org. تأتي معلومات البث من JustWatch.</string>
-    <string name="reddit_wallpaper">Reddit</string>
-    <string name="reddit_subs">Subreddits</string>
-    <string name="reddit_new">صورة جديدة الآن</string>
+    <string name="wallhaven_new">صورة جديدة الآن</string>
     <string name="more_pin">تثبيت</string>
     <string name="more_unpin">إلغاء التثبيت</string>
     <string name="more_shelf_full">الرف ممتلئ (%1$d تطبيقات). ألغِ تثبيت تطبيق أولًا.</string>
@@ -517,24 +515,6 @@
         <item>التخلي عن الإعلانات كلّفنا نموذج العمل. فنجان قهوة يصلح ذلك.</item>
         <item>إذا وفّر لك Nooko تمريرة واحدة على شاشة رئيسية مزدحمة، فقد استحق فنجان قهوة.</item>
     </string-array>
-    <string name="reddit_about_earthporn">الأرض: مناظر طبيعية وطبيعة</string>
-    <string name="reddit_about_lakeporn">الأرض: بحيرات وأنهار</string>
-    <string name="reddit_about_mountainporn">الأرض: جبال</string>
-    <string name="reddit_about_forestporn">الأرض: غابات</string>
-    <string name="reddit_about_desertporn">الأرض: صحارى</string>
-    <string name="reddit_about_autumnporn">الأرض: ألوان الخريف</string>
-    <string name="reddit_about_waterporn">الأرض: محيطات وبحار وشلالات</string>
-    <string name="reddit_about_skyporn">السماء: غيوم وغروب وعواصف</string>
-    <string name="reddit_about_spaceporn">الفضاء: كواكب ومجرات وسدم</string>
-    <string name="reddit_about_astrophotography">الفضاء: صور سماء الليل</string>
-    <string name="reddit_about_imaginarylandscapes">فن: مناظر خيالية مرسومة</string>
-    <string name="reddit_about_cityporn">مدن وأفق المباني</string>
-    <string name="reddit_about_wallpaper">خلفيات من كل نوع، وتجريدية أيضًا</string>
-    <string name="reddit_about_wallpapers">خلفيات من كل نوع</string>
-    <string name="reddit_about_widescreenwallpaper">خلفيات عريضة</string>
-    <string name="reddit_about_wqhd_wallpaper">خلفيات عالية الدقة</string>
-    <string name="reddit_about_minimalwallpaper">خلفيات بسيطة ونظيفة</string>
-    <string name="reddit_about_amoledbackgrounds">خلفيات تجريدية داكنة تقترب من الأسود</string>
     <string name="phone_key_title">إرسال مفتاح TMDB</string>
     <string name="phone_key_copy">انسخ مفتاحك (الإصدار 3) من %1$s.</string>
     <string name="phone_key_link">إعدادات TMDB API</string>
@@ -565,5 +545,28 @@
     <string name="phone_bad_video">استخدم مقطع MP4 بترميز H.264 أو HEVC حتى 1080p.</string>
     <string name="phone_bad_photo">لا يبدو أنها صورة يستطيع التلفزيون فتحها.</string>
     <string name="phone_not_allowed">غير مسموح</string>
-    <string name="reddit_about_tvwallpapers">خلفيات للتلفزيون، مناسبة للجميع</string>
+    <string name="wallhaven_wallpaper">Wallhaven</string>
+    <string name="wallhaven_topics">المواضيع</string>
+    <string name="wh_nature">الطبيعة</string>
+    <string name="wh_nature_about">غابات وبحيرات وزهور وحياة برية</string>
+    <string name="wh_landscape">مناظر طبيعية</string>
+    <string name="wh_landscape_about">مناظر واسعة للأرض والسماء</string>
+    <string name="wh_mountains">الجبال</string>
+    <string name="wh_mountains_about">قمم ووديان وثلوج</string>
+    <string name="wh_ocean">المحيط</string>
+    <string name="wh_ocean_about">بحار وشواطئ وأمواج</string>
+    <string name="wh_sunset">غروب الشمس</string>
+    <string name="wh_sunset_about">ساعات ذهبية وسماء ملوّنة</string>
+    <string name="wh_space">الفضاء</string>
+    <string name="wh_space_about">كواكب ومجرات وسدم</string>
+    <string name="wh_abstract">تجريدي</string>
+    <string name="wh_abstract_about">أشكال وألوان وأنماط</string>
+    <string name="wh_city">المدن</string>
+    <string name="wh_city_about">أفق المدن وشوارعها ليلًا ونهارًا</string>
+    <string name="wh_minimal">بسيط</string>
+    <string name="wh_minimal_about">نظيف وهادئ وبسيط</string>
+    <string name="wh_fantasy">خيالي</string>
+    <string name="wh_fantasy_about">عوالم مرسومة ومشاهد حالمة</string>
+    <string name="tmdb_services_more">المزيد من الخدمات…</string>
+    <string name="tmdb_services_main">الخدمات الرئيسية فقط</string>
 </resources>

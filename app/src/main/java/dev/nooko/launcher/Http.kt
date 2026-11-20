@@ -5,7 +5,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 /**
- * The one place the app talks to the web by hand: TMDB, Trakt, Simkl, MDBList, Bing, Reddit and the pictures all go through
+ * The one place the app talks to the web by hand: TMDB, Trakt, Simkl, MDBList, Bing, Wallhaven and the pictures all go through
  * here, so the timeouts, the user agent and the way a failure is read are the same everywhere.
  */
 internal object Http {

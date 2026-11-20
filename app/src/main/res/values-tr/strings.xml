@@ -353,9 +353,7 @@
     <string name="section_tmdb">TMDB\'de trend olanlar</string>
     <string name="tmdb_row">TMDB anahtarı</string>
     <string name="help_tmdb">Bu haftanın trend başlıklarını uygulamaların üstünde göstermek için ücretsiz TMDB API anahtarınızı yapıştırın. Anahtarı themoviedb.org\'dan alın. Yayın platformu bilgisi JustWatch\'tan gelir.</string>
-    <string name="reddit_wallpaper">Reddit</string>
-    <string name="reddit_subs">Subreddit\'ler</string>
-    <string name="reddit_new">Şimdi yeni resim</string>
+    <string name="wallhaven_new">Şimdi yeni resim</string>
     <string name="more_pin">Sabitle</string>
     <string name="more_unpin">Sabitlemeyi kaldır</string>
     <string name="more_shelf_full">Raf dolu (%1$d uygulama). Önce birinin sabitlemesini kaldırın.</string>
@@ -488,24 +486,6 @@
         <item>Reklamlardan vazgeçmek iş modelimize mal oldu. Bir kahve bunu çözer.</item>
         <item>Nooko kalabalık bir ana ekranda sizi bir kaydırmadan kurtardıysa, bir kahveyi hak etti.</item>
     </string-array>
-    <string name="reddit_about_earthporn">Dünya: manzaralar ve doğa</string>
-    <string name="reddit_about_lakeporn">Dünya: göller ve nehirler</string>
-    <string name="reddit_about_mountainporn">Dünya: dağlar</string>
-    <string name="reddit_about_forestporn">Dünya: ormanlar</string>
-    <string name="reddit_about_desertporn">Dünya: çöller</string>
-    <string name="reddit_about_autumnporn">Dünya: sonbahar renkleri</string>
-    <string name="reddit_about_waterporn">Dünya: okyanuslar, denizler ve şelaleler</string>
-    <string name="reddit_about_skyporn">Gökyüzü: bulutlar, gün batımları ve fırtınalar</string>
-    <string name="reddit_about_spaceporn">Uzay: gezegenler, galaksiler ve bulutsular</string>
-    <string name="reddit_about_astrophotography">Uzay: gece gökyüzü fotoğrafları</string>
-    <string name="reddit_about_imaginarylandscapes">Sanat: boyanmış fantastik manzaralar</string>
-    <string name="reddit_about_cityporn">Şehirler ve silüetler</string>
-    <string name="reddit_about_wallpaper">Her türden duvar kağıdı, soyut olanlar da</string>
-    <string name="reddit_about_wallpapers">Her türden duvar kağıdı</string>
-    <string name="reddit_about_widescreenwallpaper">Geniş duvar kağıtları</string>
-    <string name="reddit_about_wqhd_wallpaper">Yüksek çözünürlüklü duvar kağıtları</string>
-    <string name="reddit_about_minimalwallpaper">Sade, minimal duvar kağıtları</string>
-    <string name="reddit_about_amoledbackgrounds">Koyu, neredeyse siyah soyut arka planlar</string>
     <string name="phone_key_title">TMDB anahtarı gönder</string>
     <string name="phone_key_copy">v3 anahtarınızı %1$s sayfasından kopyalayın.</string>
     <string name="phone_key_link">TMDB API ayarları</string>
@@ -536,5 +516,28 @@
     <string name="phone_bad_video">1080p\'ye kadar H.264 veya HEVC bir MP4 video kullanın.</string>
     <string name="phone_bad_photo">Bu, TV\'nin açabileceği bir fotoğrafa benzemiyor.</string>
     <string name="phone_not_allowed">İzin verilmiyor</string>
-    <string name="reddit_about_tvwallpapers">TV duvar kağıtları, her yaşa uygun</string>
+    <string name="wallhaven_wallpaper">Wallhaven</string>
+    <string name="wallhaven_topics">Konular</string>
+    <string name="wh_nature">Doğa</string>
+    <string name="wh_nature_about">Ormanlar, göller, çiçekler ve yaban hayatı</string>
+    <string name="wh_landscape">Manzaralar</string>
+    <string name="wh_landscape_about">Kara ve gökyüzünün geniş manzaraları</string>
+    <string name="wh_mountains">Dağlar</string>
+    <string name="wh_mountains_about">Zirveler, vadiler ve kar</string>
+    <string name="wh_ocean">Okyanus</string>
+    <string name="wh_ocean_about">Denizler, plajlar ve dalgalar</string>
+    <string name="wh_sunset">Gün batımları</string>
+    <string name="wh_sunset_about">Altın saatler ve renkli gökyüzü</string>
+    <string name="wh_space">Uzay</string>
+    <string name="wh_space_about">Gezegenler, galaksiler ve bulutsular</string>
+    <string name="wh_abstract">Soyut</string>
+    <string name="wh_abstract_about">Şekiller, renkler ve desenler</string>
+    <string name="wh_city">Şehirler</string>
+    <string name="wh_city_about">Gece ve gündüz silüetler ve sokaklar</string>
+    <string name="wh_minimal">Minimal</string>
+    <string name="wh_minimal_about">Sade, sakin ve basit</string>
+    <string name="wh_fantasy">Fantastik</string>
+    <string name="wh_fantasy_about">Boyanmış dünyalar ve rüya gibi sahneler</string>
+    <string name="tmdb_services_more">Daha fazla hizmet…</string>
+    <string name="tmdb_services_main">Yalnızca ana hizmetler</string>
 </resources>

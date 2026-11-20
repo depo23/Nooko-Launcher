@@ -40,14 +40,14 @@ internal object SettingsTransfer {
         "smooth_volume", "video_keep_one", "backup_tmdb")
     private val clockFormats = ClockFormat.entries.associateBy { it.key }
     private val keys = choices.keys + switches + clockFormats.keys + setOf("order", "row_hidden", "cw_off", "row_name", "top_bar",
-        "wp_every", "geo_city", "geo_lat", "geo_lon", "home_hidden", "reddit_subs", "wp_light", "wp_dark", "tmdb_key", "tmdb_region", "tmdb_svc_ids",
+        "wp_every", "geo_city", "geo_lat", "geo_lon", "home_hidden", "wh_topics", "wp_light", "wp_dark", "tmdb_key", "tmdb_region", "tmdb_svc_ids",
         "cards_rows", "cards_src", "keymap", "glass_hue", "ch_flip", "hidden_watch",
         "wn_secrets")
     private val region = Regex("[A-Z]{2}")
     private val tmdbKey = Regex("[a-fA-F0-9]{32}")
-    private val subreddit = Regex("[A-Za-z0-9_]{2,30}")
-    private val wallpaper = Regex("bing|reddit|plain:[A-Za-z ]{2,20}")
+    private val wallpaper = Regex("bing|wallhaven|reddit|plain:[A-Za-z ]{2,20}")
     private val pkg = Regex("[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)+")
+    private val whTopics = setOf("nature", "landscape", "mountains", "ocean", "sunset", "space", "abstract", "city", "minimalism", "fantasy")
     private val word = Regex("[a-z_]{1,24}")
 
     @Suppress("DEPRECATION")
@@ -196,13 +196,13 @@ internal object SettingsTransfer {
                     require(value is Collection<*> && value.size <= 200 && value.all { it is String && it.length in 1..8 && it.all(Char::isDigit) }) { "Invalid $key" }
                     value.filterIsInstance<String>().toSet()
                 }
-                key == "reddit_subs" -> {
-                    require(value is Collection<*> && value.size in 1..32 && value.all { it is String && subreddit.matches(it) }) { "Invalid $key" }
+                key == "wh_topics" -> {
+                    require(value is Collection<*> && value.size in 1..32 && value.all { it is String && it in whTopics }) { "Invalid $key" }
                     value.filterIsInstance<String>().toSet()
                 }
                 key == "wp_light" || key == "wp_dark" -> {
                     require(value is String && wallpaper.matches(value)) { "Invalid $key" }
-                    value
+                    if (value == "reddit") "wallhaven" else value
                 }
                 key == "row_hidden" || key == "cw_off" || key == "home_hidden" -> {
                     require(value is Collection<*> && value.size <= 512 && value.all { it is String && pkg.matches(it) }) { "Invalid $key" }

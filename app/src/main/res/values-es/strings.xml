@@ -448,9 +448,7 @@
     <string name="section_tmdb">Tendencias de TMDB</string>
     <string name="tmdb_row">Clave de TMDB</string>
     <string name="help_tmdb">Pega tu clave gratuita de la API de TMDB para ver los títulos de moda de esta semana sobre las apps. Consigue una clave en themoviedb.org. La disponibilidad en streaming viene de JustWatch.</string>
-    <string name="reddit_wallpaper">Reddit</string>
-    <string name="reddit_subs">Subreddits</string>
-    <string name="reddit_new">Nueva imagen ahora</string>
+    <string name="wallhaven_new">Nueva imagen ahora</string>
     <string name="more_pin">Fijar</string>
     <string name="more_unpin">Desfijar</string>
     <string name="more_shelf_full">La estantería está llena (%1$d apps). Desfija una primero.</string>
@@ -495,24 +493,6 @@
         <item>Renunciar a los anuncios nos costó el modelo de negocio. Un café lo arregla.</item>
         <item>Si Nooko te ahorró un solo desplazamiento por una pantalla de inicio saturada, se ganó un café.</item>
     </string-array>
-    <string name="reddit_about_earthporn">Tierra: paisajes y naturaleza</string>
-    <string name="reddit_about_lakeporn">Tierra: lagos y ríos</string>
-    <string name="reddit_about_mountainporn">Tierra: montañas</string>
-    <string name="reddit_about_forestporn">Tierra: bosques</string>
-    <string name="reddit_about_desertporn">Tierra: desiertos</string>
-    <string name="reddit_about_autumnporn">Tierra: colores del otoño</string>
-    <string name="reddit_about_waterporn">Tierra: océanos, mares y cascadas</string>
-    <string name="reddit_about_skyporn">Cielo: nubes, atardeceres y tormentas</string>
-    <string name="reddit_about_spaceporn">Espacio: planetas, galaxias y nebulosas</string>
-    <string name="reddit_about_astrophotography">Espacio: fotografías del cielo nocturno</string>
-    <string name="reddit_about_imaginarylandscapes">Arte: paisajes de fantasía pintados</string>
-    <string name="reddit_about_cityporn">Ciudades y horizontes urbanos</string>
-    <string name="reddit_about_wallpaper">Fondos de todo tipo, también abstractos</string>
-    <string name="reddit_about_wallpapers">Fondos de todo tipo</string>
-    <string name="reddit_about_widescreenwallpaper">Fondos panorámicos</string>
-    <string name="reddit_about_wqhd_wallpaper">Fondos de alta resolución</string>
-    <string name="reddit_about_minimalwallpaper">Fondos limpios y minimalistas</string>
-    <string name="reddit_about_amoledbackgrounds">Fondos abstractos oscuros, casi negros</string>
     <string name="phone_key_title">Enviar una clave de TMDB</string>
     <string name="phone_key_copy">Copia tu clave v3 desde %1$s.</string>
     <string name="phone_key_link">ajustes de la API de TMDB</string>
@@ -543,5 +523,28 @@
     <string name="phone_bad_video">Usa un vídeo MP4 H.264 o HEVC de hasta 1080p.</string>
     <string name="phone_bad_photo">No parece una foto que el TV pueda abrir.</string>
     <string name="phone_not_allowed">No permitido</string>
-    <string name="reddit_about_tvwallpapers">Fondos para TV, aptos para todos</string>
+    <string name="wallhaven_wallpaper">Wallhaven</string>
+    <string name="wallhaven_topics">Temas</string>
+    <string name="wh_nature">Naturaleza</string>
+    <string name="wh_nature_about">Bosques, lagos, flores y fauna</string>
+    <string name="wh_landscape">Paisajes</string>
+    <string name="wh_landscape_about">Amplias vistas de tierra y cielo</string>
+    <string name="wh_mountains">Montañas</string>
+    <string name="wh_mountains_about">Cumbres, valles y nieve</string>
+    <string name="wh_ocean">Océano</string>
+    <string name="wh_ocean_about">Mares, playas y olas</string>
+    <string name="wh_sunset">Atardeceres</string>
+    <string name="wh_sunset_about">Horas doradas y cielos de colores</string>
+    <string name="wh_space">Espacio</string>
+    <string name="wh_space_about">Planetas, galaxias y nebulosas</string>
+    <string name="wh_abstract">Abstracto</string>
+    <string name="wh_abstract_about">Formas, colores y patrones</string>
+    <string name="wh_city">Ciudades</string>
+    <string name="wh_city_about">Horizontes y calles de noche y de día</string>
+    <string name="wh_minimal">Minimalista</string>
+    <string name="wh_minimal_about">Limpio, tranquilo y sencillo</string>
+    <string name="wh_fantasy">Fantasía</string>
+    <string name="wh_fantasy_about">Mundos pintados y escenas oníricas</string>
+    <string name="tmdb_services_more">Más servicios…</string>
+    <string name="tmdb_services_main">Solo los servicios principales</string>
 </resources>

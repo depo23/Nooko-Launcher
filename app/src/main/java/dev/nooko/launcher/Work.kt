@@ -5,7 +5,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
- * Where background work runs. The network (TMDB, Watch Next, Reddit, Bing) has a few threads of its own, so a slow service never holds
+ * Where background work runs. The network (TMDB, Watch Next, Wallhaven, Bing) has a few threads of its own, so a slow service never holds
  * up the single thread the rest of the app shares (MainActivity.io), and each thread has a name that shows in a crash report.
  */
 internal object Work {

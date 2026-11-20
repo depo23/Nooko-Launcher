@@ -136,7 +136,7 @@ import dev.nooko.launcher.MainActivity.Cards
 import dev.nooko.launcher.MainActivity.CardSource
 
 /**
- * The wallpaper: loading it, the pictures to choose from (your photos, Bing, Reddit), the photo folders and the phone upload, as
+ * The wallpaper: loading it, the pictures to choose from (your photos, Bing, Wallhaven), the photo folders and the phone upload, as
  * extensions of [MainActivity]. The views and the state stay in MainActivity; what they do lives here.
  */
 internal fun MainActivity.supportsUhdWallpaper(): Boolean {
@@ -152,7 +152,7 @@ internal fun MainActivity.loadWallpaper() {
     val view = findViewById<ImageView>(R.id.wallpaper)
     val choice = currentWallpaper()
     if (resumed && choice == Bing.CHOICE) Bing.refresh(applicationContext, prefs)
-    if (resumed && choice == Reddit.CHOICE) Reddit.refresh(applicationContext, prefs)
+    if (resumed && choice == Wallhaven.CHOICE) Wallhaven.refresh(applicationContext, prefs)
     val slideshow = choice.startsWith("folder:")
     val load = ++wallpaperLoad
     view.alpha = 1f
@@ -268,7 +268,7 @@ internal fun MainActivity.decodeWallpaper(choice: String, allowUhd: Boolean = fa
     if (choice.startsWith("plain:")) return null
     return when {
         choice == Bing.CHOICE -> fitWallpaper(allowUhd) { Bing.file(this).inputStream() }
-        choice == Reddit.CHOICE -> fitWallpaper(allowUhd) { Reddit.file(this).inputStream() }
+        choice == Wallhaven.CHOICE -> fitWallpaper(allowUhd) { Wallhaven.file(this).inputStream() }
         choice.startsWith("photo:") -> decodeMediaPhoto(choice.substringAfter(':').toLongOrNull() ?: return null, allowUhd)
         else -> {
             val file = File(wallpaperDir(), choice.removePrefix("file:"))
@@ -338,9 +338,9 @@ internal fun MainActivity.pickActiveWallpaper(forDark: Boolean) {
     if (current.startsWith("folder:")) {
         rows += page(getString(R.string.wall_shuffle_now)) { nextPhoto(); scheduleWallpaperTick(); again() }
     }
-    if (current == Reddit.CHOICE) {
-        rows += page(getString(R.string.reddit_subs), getString(R.string.n_on, Reddit.subs(prefs).size)) { pickSubreddits(back = again) }
-        rows += page(getString(R.string.reddit_new)) { Reddit.refresh(applicationContext, prefs, force = true); again() }
+    if (current == Wallhaven.CHOICE) {
+        rows += page(getString(R.string.wallhaven_topics), getString(R.string.n_on, Wallhaven.topics(prefs).size)) { pickTopics(back = again) }
+        rows += page(getString(R.string.wallhaven_new)) { Wallhaven.refresh(applicationContext, prefs, force = true); again() }
     }
     val preview = wallpaperThumb(current, forDark, true)
     val controls = rows.ifEmpty {
@@ -363,7 +363,7 @@ internal fun MainActivity.pickActiveWallpaper(forDark: Boolean) {
 }
 
 internal fun MainActivity.pickAutomaticWallpaper(forDark: Boolean, focusOn: String? = null) {
-    val tiles = listOf(Bing.CHOICE, Reddit.CHOICE).map { choice ->
+    val tiles = listOf(Bing.CHOICE, Wallhaven.CHOICE).map { choice ->
         Tile(wallpaperName(choice), choice) {
             setWallpaper(forDark, choice)
             previewWallpaper(choice) { pickAutomaticWallpaper(forDark, choice) }
@@ -373,19 +373,18 @@ internal fun MainActivity.pickAutomaticWallpaper(forDark: Boolean, focusOn: Stri
         columns = 2, tileHeight = 94) { pickWallpaper(forDark, getString(R.string.wall_automatic)) }
 }
 
-/** Which subreddits the Reddit wallpaper draws from: each toggles on OK; at least one stays on. */
-internal fun MainActivity.pickSubreddits(focus: Int = 0, back: () -> Unit) {
-    val on = Reddit.subs(prefs)
-    showPage(getString(R.string.reddit_subs), Reddit.SUGGESTED.entries.mapIndexed { i, (name, about) ->
-        // The name on the first line, what it shows on the second, and a switch on the right.
-        page("r/$name", toggle(name in on)) {
-            val next = if (name in on) on - name else on + name
-            if (next.isNotEmpty()) prefs.edit().putStringSet("reddit_subs", next).apply()
-            pickSubreddits(i, back)
+/** Which topics the Wallhaven wallpaper draws from: each has a switch; at least one stays on. */
+internal fun MainActivity.pickTopics(focus: Int = 0, back: () -> Unit) {
+    val on = Wallhaven.topics(prefs)
+    showPage(getString(R.string.wallhaven_topics), Wallhaven.TOPICS.entries.mapIndexed { i, (topic, names) ->
+        page(getString(names.first), toggle(topic in on)) {
+            val next = if (topic in on) on - topic else on + topic
+            if (next.isNotEmpty()) prefs.edit().putStringSet("wh_topics", next).apply()
+            pickTopics(i, back)
         }
-    }, focus, styles = Reddit.SUGGESTED.values.map { RowStyle(sub = getString(it)) }) {
-        prefs.edit().remove("reddit_last").putLong("reddit_day", 0).apply()
-        Reddit.refresh(applicationContext, prefs, force = true)
+    }, focus, styles = Wallhaven.TOPICS.values.map { RowStyle(sub = getString(it.second)) }) {
+        prefs.edit().remove("wh_last").putLong("wh_day", 0).apply()
+        Wallhaven.refresh(applicationContext, prefs, force = true)
         back()
     }
 }
@@ -628,8 +627,8 @@ internal fun MainActivity.setWallpaper(forDark: Boolean, choice: String, selecte
     scheduleWallpaperTick()
     Bing.dropIfUnused(applicationContext, prefs) // choosing another wallpaper deletes the Bing picture at once
     if (choice == Bing.CHOICE) Bing.refresh(applicationContext, prefs, force = true)
-    Reddit.dropIfUnused(applicationContext, prefs)
-    if (choice == Reddit.CHOICE) Reddit.refresh(applicationContext, prefs, force = true)
+    Wallhaven.dropIfUnused(applicationContext, prefs)
+    if (choice == Wallhaven.CHOICE) Wallhaven.refresh(applicationContext, prefs, force = true)
     loadWallpaper()
 }
 

@@ -289,7 +289,7 @@ internal fun MainActivity.pickTmdbRegion(focus: Int = 0) {
 }
 
 /** The streaming services TMDB lists in your country, live, with their logos. OK switches the ones you pay for on or off; only those show on a title. */
-internal fun MainActivity.pickTmdbServices() {
+internal fun MainActivity.pickTmdbServices(all: Boolean = false) {
     val key = Tmdb.key(this) ?: return toast(getString(R.string.tmdb_needs_key), long = true)
     val region = Tmdb.region(prefs)
     Work.net.execute {
@@ -301,11 +301,14 @@ internal fun MainActivity.pickTmdbServices() {
         ui.post {
             if (isDestroyed) return@post
             val chosen = settings.tmdbServiceIds.toMutableSet()
+            // The main services, then the five biggest of the country, then the ones already picked. "More services" shows the rest.
+            val shown = if (all) list else list.filter { it.id in Tmdb.CORE } +
+                list.filter { it.id !in Tmdb.CORE }.let { rest -> rest.take(5) + rest.drop(5).filter { it.id.toString() in chosen } }
             // The panel's list is 372 dp wide: four logos of 88 dp across fit; more would run off its edge.
             val cols = 4
             val grid = android.widget.GridLayout(this).apply { columnCount = cols }
             var first: View? = null
-            for (p in list) {
+            for (p in shown) {
                 val icon = ImageView(this).apply {
                     outlineProvider = object : ViewOutlineProvider() {
                         override fun getOutline(v: View, o: Outline) = o.setRoundRect(0, 0, v.width, v.height, dp(10).toFloat())
@@ -360,7 +363,10 @@ internal fun MainActivity.pickTmdbServices() {
                 if (i + cols < tiles.size) t.nextFocusDownId = tiles[i + cols].id
                 else if (i / cols < (tiles.size - 1) / cols) t.nextFocusDownId = tiles.last().id
             }
-            showPage(getString(R.string.tmdb_services), listOf(page(getString(R.string.done), "") { renderSettings(R.string.tmdb_services) }),
+            showPage(getString(R.string.tmdb_services), listOf(
+                page(getString(R.string.done), "") { renderSettings(R.string.tmdb_services) },
+                page(getString(if (all) R.string.tmdb_services_main else R.string.tmdb_services_more), "") { pickTmdbServices(!all) },
+            ),
                 top = grid, crumb = region) { renderSettings(R.string.tmdb_services) }
             first?.requestFocus()
         }

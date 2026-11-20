@@ -14,6 +14,11 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.7
+
+- **Wallhaven wallpapers.** Reddit no longer answers apps, so the Reddit wallpaper is now Wallhaven. It shows one random picture a day from the topics you turn on, such as Nature, Space or Abstract. Your Reddit choice moves to Wallhaven by itself.
+- **A shorter list of streaming services.** **My streaming services** shows the main services and the five biggest in your country. Select **More services** to see them all. The ones you picked stay on.
+
 ## 1.0.6
 
 - **Every screen speaks your language.** Italian, French, Spanish, Portuguese, Turkish and Arabic now have all the menus, labels, hints and pop-ups. The pages that open on your phone for the TMDB key and photo upload follow the TV language too.
