@@ -377,12 +377,13 @@ internal fun MainActivity.pickAutomaticWallpaper(forDark: Boolean, focusOn: Stri
 internal fun MainActivity.pickSubreddits(focus: Int = 0, back: () -> Unit) {
     val on = Reddit.subs(prefs)
     showPage(getString(R.string.reddit_subs), Reddit.SUGGESTED.entries.mapIndexed { i, (name, about) ->
-        page("r/$name", "${getString(if (name in on) R.string.on else R.string.off)} · ${getString(about)}") {
+        // The name on the first line, what it shows on the second, and a switch on the right.
+        page("r/$name", toggle(name in on)) {
             val next = if (name in on) on - name else on + name
             if (next.isNotEmpty()) prefs.edit().putStringSet("reddit_subs", next).apply()
             pickSubreddits(i, back)
         }
-    }, focus) {
+    }, focus, styles = Reddit.SUGGESTED.values.map { RowStyle(sub = getString(it)) }) {
         prefs.edit().remove("reddit_last").putLong("reddit_day", 0).apply()
         Reddit.refresh(applicationContext, prefs, force = true)
         back()
