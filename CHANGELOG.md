@@ -16,6 +16,7 @@ Put changes that are not released under `## Unreleased`. Rename that heading to 
 
 ## 1.0.3
 
+- **Load settings finds the ATV Launcher backup.** Nooko Launcher asks to read files on Android 8 to 12, then looks in the places ATV Launcher saved its backup.
 - **Watch Next is hidden for now.** The Watch Next switch and its sign-in settings are removed from **TMDB trending**. The cards always show TMDB trending titles.
 
 ## 1.0.2

@@ -869,8 +869,8 @@ internal fun MainActivity.showBackup() {
 
 internal fun MainActivity.transferSettings(load: Boolean) {
     if (transferringSettings) return
-    // A backup left by an earlier install can only be read once the TV has been allowed to read files (Android 10 to 12).
-    if (load && Build.VERSION.SDK_INT in 29..32 && checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
+    // A backup left by an earlier install or by ATV Launcher can only be read once the TV has been allowed to read files (Android 8 to 12).
+    if (load && Build.VERSION.SDK_INT <= 32 && checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != PackageManager.PERMISSION_GRANTED) {
         requestPermissions(arrayOf("android.permission.READ_EXTERNAL_STORAGE"), 41)
         toast(getString(R.string.backup_allow_files), long = true)
         return

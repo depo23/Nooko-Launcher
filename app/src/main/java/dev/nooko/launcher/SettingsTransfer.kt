@@ -84,15 +84,25 @@ internal object SettingsTransfer {
     }
 
     fun loadShared(context: Context): Map<String, Any> {
+        // The backup service of Android 10 and newer, when this app made the file or the system lets it see it.
         if (Build.VERSION.SDK_INT >= 29) for (name in listOf(BACKUP_NAME, OLD_BACKUP_NAME)) shared(context, name)?.let { uri ->
-            context.contentResolver.openInputStream(uri)?.use { input -> return decode(input.readBytes()) }
+            try { context.contentResolver.openInputStream(uri)?.use { input -> return decode(input.readBytes()) } } catch (_: Exception) { }
         }
-        val mine = file(context)
-        if (mine.exists() || Build.VERSION.SDK_INT >= 29) return load(mine) // an older backup in the app's folder
-        // Before Android 10 ATV Launcher kept its backup in its own media folder, which stays readable while it is installed.
+        // Then the files themselves: this app's backup, ATV Launcher's backup in Download, and the one ATV Launcher kept in its
+        // own media folder before Android 10 (it stays readable while ATV Launcher is installed).
         @Suppress("DEPRECATION")
-        val old = File(Environment.getExternalStorageDirectory(), "Android/media/dev.atvlauncher/backup/atv-settings.json")
-        return load(if (old.exists()) old else mine)
+        val root = Environment.getExternalStorageDirectory()
+        val found = listOfNotNull(
+            File(root, "Download/$BACKUP_NAME"), File(root, "Download/$OLD_BACKUP_NAME"),
+            File(root, "Android/media/dev.atvlauncher/backup/atv-settings.json"),
+            runCatching { file(context) }.getOrNull(),
+        )
+        var failure: Exception = IOException("No backup found")
+        for (candidate in found) {
+            try { if (candidate.exists()) return if (candidate.name.endsWith(".bak")) decode(candidate.readBytes()) else load(candidate) }
+            catch (e: Exception) { failure = e }
+        }
+        throw failure
     }
 
     fun file(context: Context): File = File(context.externalMediaDirs.firstOrNull()
