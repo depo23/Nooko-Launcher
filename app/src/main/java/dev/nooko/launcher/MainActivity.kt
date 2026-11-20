@@ -4046,7 +4046,12 @@ class MainActivity : Activity() {
         else -> ""
     }
 
-    private fun getJson(url: String) = JSONObject(openStream(url).use { it.readBytes().decodeToString() })
+    /** Always fresh from the web: the picture cache must not answer for the update check, the weather or a place search. */
+    private fun getJson(url: String): JSONObject {
+        val r = Http.send(url, connectMs = 5000, readMs = 8000)
+        if (!r.ok) throw IOException("HTTP ${r.code} for $url")
+        return JSONObject(r.body)
+    }
 
     // ---------- continue watching (Android TV Watch Next) ----------
 

@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.4
+
+- **Updates are found again.** The update check, the weather and the place search no longer use saved answers. Nooko Launcher always asks the web.
+
 ## 1.0.3
 
 - **Load settings finds the ATV Launcher backup.** Nooko Launcher asks to read files on Android 8 to 12, then looks in the places ATV Launcher saved its backup.
