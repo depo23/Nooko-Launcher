@@ -388,6 +388,7 @@
     <string name="tmdb_row">Chave do TMDB</string>
     <string name="help_tmdb">Cole sua chave gratuita da API do TMDB para mostrar os títulos em alta da semana acima dos apps. Obtenha uma chave em themoviedb.org. A disponibilidade nos streamings vem do JustWatch.</string>
     <string name="reddit_wallpaper">Reddit</string>
+    <string name="reddit_subs">Subreddits</string>
     <string name="reddit_new">Nova imagem agora</string>
     <string name="more_pin">Fixar</string>
     <string name="more_unpin">Desafixar</string>
@@ -491,6 +492,24 @@
         <item>Abrir mão dos anúncios custou nosso modelo de negócio. Um café resolve.</item>
         <item>Se o Nooko poupou você de uma rolagem numa tela inicial lotada, ele mereceu um café.</item>
     </string-array>
+    <string name="reddit_about_earthporn">Terra: paisagens e natureza</string>
+    <string name="reddit_about_lakeporn">Terra: lagos e rios</string>
+    <string name="reddit_about_mountainporn">Terra: montanhas</string>
+    <string name="reddit_about_forestporn">Terra: florestas</string>
+    <string name="reddit_about_desertporn">Terra: desertos</string>
+    <string name="reddit_about_autumnporn">Terra: cores do outono</string>
+    <string name="reddit_about_waterporn">Terra: oceanos, mares e cachoeiras</string>
+    <string name="reddit_about_skyporn">Céu: nuvens, pores do sol e tempestades</string>
+    <string name="reddit_about_spaceporn">Espaço: planetas, galáxias e nebulosas</string>
+    <string name="reddit_about_astrophotography">Espaço: fotografias do céu noturno</string>
+    <string name="reddit_about_imaginarylandscapes">Arte: paisagens de fantasia pintadas</string>
+    <string name="reddit_about_cityporn">Cidades e skylines</string>
+    <string name="reddit_about_wallpaper">Planos de fundo de todo tipo, inclusive abstratos</string>
+    <string name="reddit_about_wallpapers">Planos de fundo de todo tipo</string>
+    <string name="reddit_about_widescreenwallpaper">Planos de fundo panorâmicos</string>
+    <string name="reddit_about_wqhd_wallpaper">Planos de fundo de alta resolução</string>
+    <string name="reddit_about_minimalwallpaper">Planos de fundo limpos e minimalistas</string>
+    <string name="reddit_about_amoledbackgrounds">Fundos abstratos escuros, quase pretos</string>
     <string name="phone_key_title">Enviar uma chave do TMDB</string>
     <string name="phone_key_copy">Copie sua chave v3 em %1$s.</string>
     <string name="phone_key_link">configurações da API do TMDB</string>

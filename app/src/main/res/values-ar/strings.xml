@@ -367,6 +367,7 @@
     <string name="tmdb_row">مفتاح TMDB</string>
     <string name="help_tmdb">الصق مفتاح TMDB API المجاني لعرض العناوين الأكثر رواجًا هذا الأسبوع فوق التطبيقات. احصل على مفتاح من themoviedb.org. تأتي معلومات البث من JustWatch.</string>
     <string name="reddit_wallpaper">Reddit</string>
+    <string name="reddit_subs">Subreddits</string>
     <string name="reddit_new">صورة جديدة الآن</string>
     <string name="more_pin">تثبيت</string>
     <string name="more_unpin">إلغاء التثبيت</string>
@@ -516,6 +517,24 @@
         <item>التخلي عن الإعلانات كلّفنا نموذج العمل. فنجان قهوة يصلح ذلك.</item>
         <item>إذا وفّر لك Nooko تمريرة واحدة على شاشة رئيسية مزدحمة، فقد استحق فنجان قهوة.</item>
     </string-array>
+    <string name="reddit_about_earthporn">الأرض: مناظر طبيعية وطبيعة</string>
+    <string name="reddit_about_lakeporn">الأرض: بحيرات وأنهار</string>
+    <string name="reddit_about_mountainporn">الأرض: جبال</string>
+    <string name="reddit_about_forestporn">الأرض: غابات</string>
+    <string name="reddit_about_desertporn">الأرض: صحارى</string>
+    <string name="reddit_about_autumnporn">الأرض: ألوان الخريف</string>
+    <string name="reddit_about_waterporn">الأرض: محيطات وبحار وشلالات</string>
+    <string name="reddit_about_skyporn">السماء: غيوم وغروب وعواصف</string>
+    <string name="reddit_about_spaceporn">الفضاء: كواكب ومجرات وسدم</string>
+    <string name="reddit_about_astrophotography">الفضاء: صور سماء الليل</string>
+    <string name="reddit_about_imaginarylandscapes">فن: مناظر خيالية مرسومة</string>
+    <string name="reddit_about_cityporn">مدن وأفق المباني</string>
+    <string name="reddit_about_wallpaper">خلفيات من كل نوع، وتجريدية أيضًا</string>
+    <string name="reddit_about_wallpapers">خلفيات من كل نوع</string>
+    <string name="reddit_about_widescreenwallpaper">خلفيات عريضة</string>
+    <string name="reddit_about_wqhd_wallpaper">خلفيات عالية الدقة</string>
+    <string name="reddit_about_minimalwallpaper">خلفيات بسيطة ونظيفة</string>
+    <string name="reddit_about_amoledbackgrounds">خلفيات تجريدية داكنة تقترب من الأسود</string>
     <string name="phone_key_title">إرسال مفتاح TMDB</string>
     <string name="phone_key_copy">انسخ مفتاحك (الإصدار 3) من %1$s.</string>
     <string name="phone_key_link">إعدادات TMDB API</string>
