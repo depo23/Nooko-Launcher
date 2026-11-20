@@ -8,8 +8,13 @@ import java.net.ServerSocket
 import java.security.SecureRandom
 import java.util.Base64
 
+/** The words on a page the TV serves to a phone: the TV's language for a key, or the English given beside it. */
+internal typealias PhoneText = (key: String, english: String) -> String
+
+internal fun htmlText(s: String) = s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
 /** A one-use form on the TV, open for five minutes or until the user leaves the QR screen. */
-internal class TmdbKeyTransfer(address: InetAddress, private val receive: (String) -> Unit) {
+internal class TmdbKeyTransfer(address: InetAddress, private val t: PhoneText = { _, english -> english }, private val receive: (String) -> Unit) {
     private val token = Base64.getUrlEncoder().withoutPadding().encodeToString(ByteArray(16).also(SecureRandom()::nextBytes))
     private val server = ServerSocket(0, 2, address)
     private val host = "${address.hostAddress}:${server.localPort}"
@@ -58,21 +63,22 @@ internal class TmdbKeyTransfer(address: InetAddress, private val receive: (Strin
         }
         if (!complete || headers["host"] != host) return
         when (request) {
-            "GET /$token HTTP/1.1" -> reply(output, "200 OK", "Send a TMDB key", FORM)
+            "GET /$token HTTP/1.1" -> reply(output, "200 OK", t("key_title", "Send a TMDB key"), form())
             "POST /$token HTTP/1.1" -> {
                 val validForm = headers["origin"] == "http://$host" && headers["content-length"] == "36" &&
                     headers["content-type"] == "application/x-www-form-urlencoded"
                 val body = if (validForm) ByteArray(36) { input.read().toByte() }.decodeToString() else ""
                 val key = body.takeIf { it.startsWith("key=") }?.removePrefix("key=")?.takeIf(Tmdb::validKey)
                 if (key == null || server.isClosed || System.nanoTime() >= expires) {
-                    return reply(output, "400 Bad Request", "Key not sent",
-                        """<p>Check the key or scan a new code.</p><a href="/$token">Back to the form</a>""")
+                    return reply(output, "400 Bad Request", t("key_bad_title", "Key not sent"),
+                        """<p>${htmlText(t("key_bad", "Check the key or scan a new code."))}</p><a href="/$token">${htmlText(t("back_form", "Back to the form"))}</a>""")
                 }
                 stop()
                 receive(key)
-                reply(output, "200 OK", "Key sent", "<p>Select <strong>Done</strong> on the TV.</p>")
+                reply(output, "200 OK", t("key_sent_title", "Key sent"),
+                    "<p>" + htmlText(t("key_sent", "Select %1\$s on the TV.")).replace("%1\$s", "<strong>${htmlText(t("done", "Done"))}</strong>") + "</p>")
             }
-            else -> reply(output, "404 Not Found", "Code unavailable", "<p>Scan the code on the TV.</p>")
+            else -> reply(output, "404 Not Found", t("code_gone_title", "Code unavailable"), "<p>${htmlText(t("scan_tv", "Scan the code on the TV."))}</p>")
         }
     }
 
@@ -91,14 +97,14 @@ internal class TmdbKeyTransfer(address: InetAddress, private val receive: (Strin
     private fun reply(out: OutputStream, status: String, title: String, body: String) {
         val bytes = """
             <!doctype html>
-            <html lang="en">
+            <html lang="${t("lang", "en")}" dir="${t("dir", "ltr")}">
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>$title · Nooko Launcher</title>
+            <title>${htmlText(title)} · Nooko Launcher</title>
             <style>$STYLE</style>
             <main>
               <p class="brand">Nooko Launcher</p>
-              <h1>$title</h1>
+              <h1>${htmlText(title)}</h1>
               $body
             </main>
             </html>
@@ -110,16 +116,20 @@ internal class TmdbKeyTransfer(address: InetAddress, private val receive: (Strin
         out.flush()
     }
 
-    private companion object {
-        const val FORM = """
-            <p>Copy your v3 key from <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">TMDB API settings</a>.</p>
+    private fun form(): String {
+        val link = """<a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">${htmlText(t("key_link", "TMDB API settings"))}</a>"""
+        return """
+            <p>${htmlText(t("key_copy", "Copy your v3 key from %1\$s.")).replace("%1\$s", link)}</p>
             <form method="post">
-              <label for="key">TMDB API key (v3)</label>
+              <label for="key">${htmlText(t("key_label", "TMDB API key (v3)"))}</label>
               <input id="key" name="key" type="password" required pattern="[a-fA-F0-9]{32}" autocomplete="off" autocapitalize="none" spellcheck="false">
-              <button>Send to TV</button>
+              <button>${htmlText(t("send", "Send to TV"))}</button>
             </form>
-            <p class="connection">Use trusted Wi-Fi. The connection to the TV is unencrypted.</p>
+            <p class="connection">${htmlText(t("wifi", "Use trusted Wi-Fi. The connection to the TV is unencrypted."))}</p>
         """
+    }
+
+    private companion object {
 
         const val STYLE = """
             :root {

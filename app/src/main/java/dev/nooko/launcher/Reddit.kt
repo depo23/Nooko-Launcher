@@ -23,26 +23,26 @@ import java.util.concurrent.atomic.AtomicBoolean
 internal object Reddit {
     const val CHOICE = "reddit"
 
-    /** Subreddit to a few words about what it shows. All of them are picture subreddits that are safe for work. */
+    /** Subreddit to the string that says in a few words what it shows. All of them are picture subreddits that are safe for work. */
     val SUGGESTED = linkedMapOf(
-        "EarthPorn" to "Earth: landscapes and nature",
-        "LakePorn" to "Earth: lakes and rivers",
-        "MountainPorn" to "Earth: mountains",
-        "ForestPorn" to "Earth: forests",
-        "DesertPorn" to "Earth: deserts",
-        "AutumnPorn" to "Earth: autumn colours",
-        "WaterPorn" to "Earth: oceans, seas and waterfalls",
-        "SkyPorn" to "Sky: clouds, sunsets and storms",
-        "spaceporn" to "Space: planets, galaxies and nebulae",
-        "astrophotography" to "Space: night sky photographs",
-        "ImaginaryLandscapes" to "Art: painted fantasy landscapes",
-        "CityPorn" to "Cities and skylines",
-        "wallpaper" to "Wallpapers of every kind, abstract too",
-        "wallpapers" to "Wallpapers of every kind",
-        "WidescreenWallpaper" to "Wide wallpapers",
-        "WQHD_Wallpaper" to "High-resolution wallpapers",
-        "MinimalWallpaper" to "Clean, minimal wallpapers",
-        "Amoledbackgrounds" to "Dark, near-black abstract backgrounds",
+        "EarthPorn" to R.string.reddit_about_earthporn,
+        "LakePorn" to R.string.reddit_about_lakeporn,
+        "MountainPorn" to R.string.reddit_about_mountainporn,
+        "ForestPorn" to R.string.reddit_about_forestporn,
+        "DesertPorn" to R.string.reddit_about_desertporn,
+        "AutumnPorn" to R.string.reddit_about_autumnporn,
+        "WaterPorn" to R.string.reddit_about_waterporn,
+        "SkyPorn" to R.string.reddit_about_skyporn,
+        "spaceporn" to R.string.reddit_about_spaceporn,
+        "astrophotography" to R.string.reddit_about_astrophotography,
+        "ImaginaryLandscapes" to R.string.reddit_about_imaginarylandscapes,
+        "CityPorn" to R.string.reddit_about_cityporn,
+        "wallpaper" to R.string.reddit_about_wallpaper,
+        "wallpapers" to R.string.reddit_about_wallpapers,
+        "WidescreenWallpaper" to R.string.reddit_about_widescreenwallpaper,
+        "WQHD_Wallpaper" to R.string.reddit_about_wqhd_wallpaper,
+        "MinimalWallpaper" to R.string.reddit_about_minimalwallpaper,
+        "Amoledbackgrounds" to R.string.reddit_about_amoledbackgrounds,
     )
     private val DEFAULT = setOf("EarthPorn", "SkyPorn", "spaceporn")
     private const val AGENT = "Nooko-Launcher/1.0 (Android TV home screen; wallpaper from Reddit's public feed)"

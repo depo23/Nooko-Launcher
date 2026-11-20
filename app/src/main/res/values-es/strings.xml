@@ -9,37 +9,17 @@
     <string name="override_desc">Abre Nooko Launcher cada vez que aparece la pantalla de inicio de Google TV, para que el botón Inicio te lleve aquí.</string>
     <string name="delete_photo">¿Eliminar \"%1$s\"?</string>
     <string name="photo_added">Se añadió \"%1$s\". Envía otra o pulsa Listo.</string>
-    <string name="video_wallpapers">Fondos animados</string>
-    <string name="surprise_me">Sorpréndeme</string>
-    <string name="random_scene">Escena aleatoria</string>
-    <string name="nasa_earth">NASA Earth</string>
-    <string name="apple_aerial">Apple Aerial</string>
-    <string name="amazon_fire_tv">Amazon Fire TV</string>
-    <string name="video_added">Se añadió \"%1$s\". Elige Usar este vídeo para aplicarlo.</string>
-    <string name="use_video">Usar este vídeo</string>
-    <string name="remove_video">Quitar un vídeo…</string>
-    <string name="video_sources_credit">Elige una escena en movimiento para tu pantalla de inicio. La descarga empieza al seleccionarla.</string>
-    <string name="video_keep_one">Eliminar escenas sin usar</string>
-    <string name="video_keep_one_desc">Tus vídeos y las escenas del salvapantallas se conservan</string>
-    <string name="video_downloading">Descargando vídeo: %1$d%%</string>
-    <string name="video_download_failed">No se pudo descargar ni reproducir este vídeo. Comprueba la red y el almacenamiento.</string>
-    <string name="video_cannot_play">Esta TV no puede reproducir este vídeo. Elige otro fondo.</string>
     <string name="n_of_m">%1$d de %2$d</string>
     <string name="n_off">%1$d desactivadas</string>
     <string name="n_on">%1$d activas</string>
     <string name="update_available_row">%1$s disponible</string>
     <string name="up_to_date_row">Al día (%1$s)</string>
     <string name="too_many_tries">Demasiados intentos. Inténtalo de nuevo en %1$d s.</string>
-    <string name="downloading_paintings">Descargando cuadros de la Galería (%1$s)…</string>
     <string name="update_available_toast">Nooko Launcher %1$s está disponible. Actualízalo en los ajustes de Nooko Launcher.</string>
     <string name="no_places">No hay lugares llamados \"%1$s\".</string>
     <string name="time_left_hm">Quedan %1$d h %2$d min</string>
     <string name="time_left_m">Quedan %1$d min</string>
     <string name="folder_name">Carpeta: %1$s</string>
-    <string name="wp_mist_day">Niebla (día)</string>
-    <string name="wp_peak_dusk">Cumbre (atardecer)</string>
-    <string name="wp_pure_black">Negro puro</string>
-    <string name="wp_soft_white">Blanco suave</string>
     <string name="every_1">Cada minuto</string>
     <string name="every_5">Cada 5 min</string>
     <string name="every_10">Cada 10 min</string>
@@ -54,9 +34,7 @@
     <string name="photos_permission">Nooko Launcher necesita acceso a las fotos para mostrar tus carpetas</string>
     <string name="home_off_hint">Desactiva \"Nooko Launcher: botón Inicio\" en Ajustes → Sistema → Accesibilidad</string>
     <string name="home_on_hint">Activa \"Nooko Launcher: botón Inicio\" en Ajustes → Sistema → Accesibilidad</string>
-    <string name="dark_wallpaper">Fondo oscuro</string>
     <string name="wallpaper">Fondo de pantalla</string>
-    <string name="light_wallpaper">Fondo claro</string>
     <string name="folder_photo_changes">Cambiar foto cada</string>
     <string name="no_photos">No se encontraron fotos. Copia algunas a la TV o conecta una memoria USB con fotos.</string>
     <string name="choose_folder">Elegir una carpeta</string>
@@ -117,7 +95,6 @@
     <string name="home_button">Botón Inicio</string>
     <string name="smooth_volume">Volumen continuo</string>
     <string name="default_launcher">Lanzador predeterminado</string>
-    <string name="atv_press_change">Nooko Launcher: pulsa para cambiar</string>
     <string name="press_to_set">Pulsa para configurar</string>
     <string name="updates">Actualizaciones</string>
     <string name="updating">Actualizando…</string>
@@ -157,7 +134,6 @@
     <string name="top_hint_swap">◀ ▶  elegir qué icono sustituir   ·   OK  colocar   ·   Atrás  deshacer</string>
     <string name="top_hint_tray">OK  añadir a la barra   ·   ▲  barra superior   ·   Atrás  listo</string>
     <string name="top_hint_tray_full">OK  cambiar por uno de la barra   ·   ▲  barra superior   ·   Atrás  listo</string>
-    <string name="remove_from_row">Quitar de la fila</string>
     <string name="removed_from_row">Quitada de la fila. Sigue disponible en Todas las apps.</string>
     <string name="app_info">Información de la app</string>
     <string name="uninstall">Desinstalar</string>
@@ -171,25 +147,8 @@
     <string name="off">Desactivado</string>
     <string name="on">Activado</string>
     <string name="system_default">Predeterminado del sistema</string>
-    <string name="gallery_paintings">Cuadros de la Galería</string>
-    <string name="downloading">Descargando…</string>
     <string name="your_photos">Tus fotos</string>
-    <string name="aerial_views">Aerial Views</string>
-    <string name="use_aerial_views">Usar Aerial Views</string>
-    <plurals name="aerial_on_disk">
-        <item quantity="one">%1$d escena, %2$d MB</item>
-        <item quantity="many">%1$d escenas, %2$d MB</item>
-        <item quantity="other">%1$d escenas, %2$d MB</item>
-    </plurals>
-    <plurals name="n_scenes">
-        <item quantity="one">%1$d escena</item>
-        <item quantity="many">%1$d escenas</item>
-        <item quantity="other">%1$d escenas</item>
-    </plurals>
-    <string name="aerial_download_first">Descarga una escena primero. Selecciona una escena abajo.</string>
-    <string name="aerial_in_use">El fondo usa esta escena. Elige otro fondo primero.</string>
     <string name="choose_gallery_hint">Elige \"Galería\" como salvapantallas aquí</string>
-    <string name="paintings_failed">No se pudieron descargar los cuadros. Comprueba la conexión e inténtalo de nuevo.</string>
     <string name="cant_dream">Esta TV no puede iniciar el salvapantallas bajo demanda</string>
     <string name="update_check_failed">No se pudieron buscar actualizaciones. Comprueba la conexión.</string>
     <string name="up_to_date_toast">Nooko Launcher está al día</string>
@@ -236,13 +195,11 @@
     <string name="theme_light">Claro</string>
     <string name="theme_dark">Oscuro</string>
     <string name="theme_auto">Auto</string>
-    <string name="glass_clear_video">El cristal Transparente necesita un fondo fijo. Con un vídeo, Nooko Launcher usa Esmerilado.</string>
     <string name="auto_note_sun">Auto usa el tema claro desde el amanecer hasta el atardecer en %1$s. Hoy: de %2$s a %3$s.</string>
     <string name="auto_note_up">Auto se queda en claro hoy: el sol no se pone en %1$s.</string>
     <string name="auto_note_down">Auto se queda en oscuro hoy: el sol no sale en %1$s.</string>
     <string name="auto_note_clock">Auto usa el tema claro de %1$s a %2$s. Elige una ubicación en Reloj y clima para seguir el amanecer y el atardecer.</string>
     <string name="your_area">tu zona</string>
-    <string name="help_appearance">Claro u oscuro, y la imagen detrás de tus apps.</string>
     <string name="help_clock_weather">El clima debajo del reloj y el lugar al que corresponde.</string>
     <string name="help_apps_row">Qué apps hay en la fila, su orden y su aspecto.</string>
     <string name="help_shows_row">La fila debajo de tus apps: Seguir viendo y los canales que añaden tus apps.</string>
@@ -320,7 +277,6 @@
     <string name="align_left">Izquierda</string>
     <string name="align_centre">Centro</string>
     <string name="align_right">Derecha</string>
-    <string name="section_appearance">Fondo y tema</string>
     <string name="section_app_row">Fila de apps</string>
     <string name="section_screensaver">Salvapantallas</string>
     <string name="sources">Entradas</string>
@@ -371,7 +327,6 @@
         <item quantity="other">%d botones</item>
     </plurals>
     <string name="fire_os_no_input">Fire TV no dejó que Nooko Launcher cambiara a esta entrada. Mantén pulsado Inicio y elige Entradas.</string>
-    <string name="shows_wallpaper">Tus contenidos</string>
     <string name="tmdb_artwork">Imágenes de TMDB</string>
     <string name="tmdb_name">TMDB</string>
     <string name="tmdb_help">Introduce una clave de API de TMDB para encontrar fondos nítidos. Cuando hace falta, Nooko Launcher envía títulos de contenidos a TMDB.</string>
@@ -384,8 +339,6 @@
     <string name="tmdb_turn_off">Desactivar TMDB y borrar la clave</string>
     <string name="tmdb_credit">Este producto usa la API de TMDB, pero TMDB no lo respalda ni lo certifica.</string>
     <string name="wp_sources">Contenidos de</string>
-    <string name="wp_usable">%1$d/%2$d</string>
-    <string name="featured_now">Destacado: %1$s</string>
     <string name="help_wp_sources">Las apps cuyos contenidos pueden convertirse en el fondo. Nooko Launcher solo usa imágenes panorámicas.</string>
     <string name="section_style">Estilo</string>
     <string name="group_home_screen">Pantalla de inicio</string>
@@ -397,8 +350,6 @@
     <string name="help_wallpaper">Pulsa OK para elegir un fondo.</string>
     <string name="help_wp_tile">Pulsa OK para probarlo. Pulsa cualquier botón para volver.</string>
     <string name="my_uploads">Mis envíos</string>
-    <string name="built_in">Incluidos</string>
-    <string name="manage_videos">Gestionar vídeos</string>
     <string name="wp_preview_hint">Pulsa cualquier botón para volver a los ajustes</string>
     <string name="smooth_volume_cost">Inicio abre Nooko Launcher más despacio</string>
     <string name="help_app_names">Cuándo se muestran los nombres de las apps bajo los recuadros.</string>
@@ -406,18 +357,10 @@
     <string name="help_show_row">\"Al pulsar Abajo\" oculta la fila hasta que pulses Abajo en el control remoto.</string>
     <string name="help_weather">Muestra el clima debajo del reloj.</string>
     <string name="help_units">Celsius o Fahrenheit.</string>
-    <string name="help_screensaver_pick">Cuadros, Aerial Views, tus fotos o el salvapantallas propio de la TV.</string>
+    <string name="help_screensaver_pick">Tus fotos, los títulos de moda de TMDB o el salvapantallas del TV.</string>
     <string name="help_preview">Inicia el salvapantallas ahora. Pulsa cualquier botón para detenerlo.</string>
     <string name="help_photo_every">Cada cuánto se muestra la siguiente imagen.</string>
-    <string name="help_add_from_phone">Escanea el código QR con tu teléfono y envía una foto o un vídeo.</string>
-    <string name="help_folder">Una presentación con las fotos de una carpeta de esta TV o de una memoria USB.</string>
     <string name="help_my_uploads">Las fotos y los vídeos que enviaste desde tu teléfono.</string>
-    <string name="help_surprise">Reproduce una escena elegida al azar.</string>
-    <string name="help_built_in">Las imágenes que incluye Nooko Launcher y un color liso.</string>
-    <string name="get_wallpaper_pack">Más fotos (%1$s)</string>
-    <string name="downloading_wallpapers">Descargando fondos (%1$s)…</string>
-    <string name="wallpapers_failed">No se pudieron descargar los fondos. Comprueba la conexión e inténtalo de nuevo.</string>
-    <string name="help_wallpaper_pack">Abre Incluidos para buscar fondos nuevos y actualizar las fotos descargadas. Pulsa OK sobre una foto nueva para descargarla.</string>
     <string name="theme_wallpaper">Fondo</string>
     <string name="help_theme_wallpaper">Fondo elige claro u oscuro según tu imagen, y el cristal toma sus colores.</string>
     <string name="clock_style">Estilo del reloj</string>
@@ -440,12 +383,8 @@
     <string name="time_format_tokens">Usa HH para la hora en formato de 24 horas, h y a para el de 12 horas, y mm para los minutos.</string>
     <string name="clock_format_preview">Vista previa: %1$s</string>
     <string name="clock_format_invalid">Usa un patrón válido, por ejemplo %1$s.</string>
-    <string name="media_previous">Anterior</string>
-    <string name="media_play_pause">Reproducir o pausar</string>
-    <string name="media_next">Siguiente</string>
     <string name="wall_in_use">En uso</string>
     <string name="wall_my_photos">Mis fotos</string>
-    <string name="wall_collection">Colección Nooko Launcher</string>
     <string name="wall_automatic">Automático</string>
     <string name="wall_edit_photos">Editar fotos</string>
     <string name="wall_shuffle_now">Cambiar foto ahora</string>
@@ -505,4 +444,103 @@
         <item quantity="one">%d episodio</item>
         <item quantity="other">%d episodios</item>
     </plurals>
+    <string name="size_tv">Apple TV</string>
+    <string name="section_tmdb">Tendencias de TMDB</string>
+    <string name="tmdb_row">Clave de TMDB</string>
+    <string name="help_tmdb">Pega tu clave gratuita de la API de TMDB para ver los títulos de moda de esta semana sobre las apps. Consigue una clave en themoviedb.org. La disponibilidad en streaming viene de JustWatch.</string>
+    <string name="reddit_wallpaper">Reddit</string>
+    <string name="reddit_subs">Subreddits</string>
+    <string name="reddit_new">Nueva imagen ahora</string>
+    <string name="more_pin">Fijar</string>
+    <string name="more_unpin">Desfijar</string>
+    <string name="more_shelf_full">La estantería está llena (%1$d apps). Desfija una primero.</string>
+    <string name="more_hide">Ocultar del inicio</string>
+    <string name="more_pinned">Fijada en la estantería</string>
+    <string name="more_hidden">Oculta del inicio. Sigue en Todas las apps.</string>
+    <string name="fav_sort">Orden de las apps fijadas</string>
+    <string name="fav_custom">Personalizado</string>
+    <string name="help_fav_sort">Personalizado mantiene el orden que elijas. Más usadas pone al principio las apps fijadas que más abres. Al mover una app se activa Personalizado.</string>
+    <string name="tmdb_mode">Vista de TMDB</string>
+    <string name="tmdb_cards">Tarjetas</string>
+    <string name="tmdb_full">Pantalla completa</string>
+    <string name="help_tmdb_mode">Tarjetas muestra los títulos de moda como tarjetas sobre las apps. Pantalla completa muestra un título cada vez en toda la pantalla y usa el tema oscuro.</string>
+    <string name="backup_tmdb_key">Incluir claves e inicios de sesión en la copia</string>
+    <string name="backup_key_warning">Con las claves y los inicios de sesión incluidos, el archivo de copia guarda la clave de TMDB y tus inicios de sesión como texto sin cifrar. Mantén el archivo en privado.</string>
+    <string name="tmdb_unavailable">No se pudo cargar la información de streaming</string>
+    <string name="tmdb_screensaver">Tendencias de TMDB</string>
+    <string name="tmdb_needs_key">Añade primero una clave de TMDB</string>
+    <string name="tmdb_region">País de streaming</string>
+    <string name="tmdb_region_device">Este TV (%1$s)</string>
+    <string name="tmdb_services">Mis servicios de streaming</string>
+    <string name="tmdb_services_none">Ninguno elegido</string>
+    <string name="help_tmdb_region">El país cuyos servicios de streaming se muestran. TMDB los lista por país.</string>
+    <string name="help_tmdb_services">Los servicios de streaming que TMDB lista en tu país. Elige los que pagas: solo esos aparecen en un título. Si no eliges ninguno, aparecen todos.</string>
+    <string name="tmdb_trending_title">Tendencias en TMDB</string>
+    <string name="backup_allow_files">Permite el acceso a los archivos y vuelve a elegir Cargar ajustes.</string>
+    <string name="heart_label">Apoya Nooko Launcher</string>
+    <string name="heart_scan">Escanea con la cámara del móvil para invitar a Nooko a un café.</string>
+    <string name="tmdb_refresh">Actualizar títulos ahora</string>
+    <string name="tmdb_refreshed">Obteniendo títulos nuevos de TMDB</string>
+    <string name="help_tmdb_refresh">Vuelve a pedir a TMDB los títulos de moda de esta semana, en un orden aleatorio nuevo.</string>
+    <string name="tmdb_hero_open_failed">Ninguna app puede abrir este título</string>
+    <string-array name="heart_messages">
+        <item>Sin anuncios. Sin rastreo. Sin cuenta. Solo un launcher que paga el alquiler con café.</item>
+        <item>Nooko nunca pide tus datos. Solo pide, con mucha educación, un café.</item>
+        <item>Otros launchers venden tu atención. Nooko no vende nada, así que funciona con café.</item>
+        <item>Un café mantiene pulida la estantería de cristal y los errores lejos de tu pantalla de inicio.</item>
+        <item>Nooko lo hace una persona y un mando muy cansado. Un café ayuda a los dos.</item>
+        <item>Tu TV funciona con electricidad. Su pantalla de inicio funciona con café. Ayuda a mantenerla en marcha.</item>
+        <item>Nooko nunca te mostrará un anuncio. Eso sí, te mostrará un código QR. ¿Trato justo?</item>
+        <item>Un café al día mantiene lejos la pantalla de inicio desordenada.</item>
+        <item>Renunciar a los anuncios nos costó el modelo de negocio. Un café lo arregla.</item>
+        <item>Si Nooko te ahorró un solo desplazamiento por una pantalla de inicio saturada, se ganó un café.</item>
+    </string-array>
+    <string name="reddit_about_earthporn">Tierra: paisajes y naturaleza</string>
+    <string name="reddit_about_lakeporn">Tierra: lagos y ríos</string>
+    <string name="reddit_about_mountainporn">Tierra: montañas</string>
+    <string name="reddit_about_forestporn">Tierra: bosques</string>
+    <string name="reddit_about_desertporn">Tierra: desiertos</string>
+    <string name="reddit_about_autumnporn">Tierra: colores del otoño</string>
+    <string name="reddit_about_waterporn">Tierra: océanos, mares y cascadas</string>
+    <string name="reddit_about_skyporn">Cielo: nubes, atardeceres y tormentas</string>
+    <string name="reddit_about_spaceporn">Espacio: planetas, galaxias y nebulosas</string>
+    <string name="reddit_about_astrophotography">Espacio: fotografías del cielo nocturno</string>
+    <string name="reddit_about_imaginarylandscapes">Arte: paisajes de fantasía pintados</string>
+    <string name="reddit_about_cityporn">Ciudades y horizontes urbanos</string>
+    <string name="reddit_about_wallpaper">Fondos de todo tipo, también abstractos</string>
+    <string name="reddit_about_wallpapers">Fondos de todo tipo</string>
+    <string name="reddit_about_widescreenwallpaper">Fondos panorámicos</string>
+    <string name="reddit_about_wqhd_wallpaper">Fondos de alta resolución</string>
+    <string name="reddit_about_minimalwallpaper">Fondos limpios y minimalistas</string>
+    <string name="reddit_about_amoledbackgrounds">Fondos abstractos oscuros, casi negros</string>
+    <string name="phone_key_title">Enviar una clave de TMDB</string>
+    <string name="phone_key_copy">Copia tu clave v3 desde %1$s.</string>
+    <string name="phone_key_link">ajustes de la API de TMDB</string>
+    <string name="phone_send">Enviar al TV</string>
+    <string name="phone_wifi_note">Usa una red Wi-Fi de confianza. La conexión con el TV no está cifrada.</string>
+    <string name="phone_key_bad_title">Clave no enviada</string>
+    <string name="phone_key_bad">Revisa la clave o escanea un código nuevo.</string>
+    <string name="phone_back_form">Volver al formulario</string>
+    <string name="phone_key_sent_title">Clave enviada</string>
+    <string name="phone_key_sent">Selecciona %1$s en el TV.</string>
+    <string name="phone_code_gone_title">Código no disponible</string>
+    <string name="phone_scan_tv">Escanea el código en el TV.</string>
+    <string name="phone_up_title_wall">Fondo de Nooko Launcher</string>
+    <string name="phone_up_title_pic">Imagen de app de Nooko Launcher</string>
+    <string name="phone_up_h_wall">Añadir un fondo</string>
+    <string name="phone_up_p_wall">Elige una foto. Aparece en tu TV un momento después de subirla.</string>
+    <string name="phone_up_p_pic">Elige una imagen PNG, JPEG o WebP de hasta 5 MB. Los iconos conservan las zonas transparentes. Los banners se recortan a 16:9 alrededor del centro.</string>
+    <string name="phone_choose_pic">Elegir imagen</string>
+    <string name="phone_choose_photo">Elegir foto</string>
+    <string name="phone_upload">Subir al TV</string>
+    <string name="phone_uploading">Subiendo…</string>
+    <string name="phone_send_another"> Puedes enviar otra.</string>
+    <string name="phone_unreachable">No se pudo conectar con el TV. ¿Sigue abierta la pantalla de subida?</string>
+    <string name="phone_not_found">No encontrado. Escanea de nuevo el código en el TV.</string>
+    <string name="phone_not_video">Elige una imagen, no un vídeo.</string>
+    <string name="phone_too_big">El archivo es demasiado grande (máximo %1$d MB).</string>
+    <string name="phone_added">Se añadió «%1$s» a tu TV.</string>
+    <string name="phone_bad_video">Usa un vídeo MP4 H.264 o HEVC de hasta 1080p.</string>
+    <string name="phone_bad_photo">No parece una foto que el TV pueda abrir.</string>
+    <string name="phone_not_allowed">No permitido</string>
 </resources>

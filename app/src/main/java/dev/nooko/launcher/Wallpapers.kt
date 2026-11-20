@@ -377,7 +377,7 @@ internal fun MainActivity.pickAutomaticWallpaper(forDark: Boolean, focusOn: Stri
 internal fun MainActivity.pickSubreddits(focus: Int = 0, back: () -> Unit) {
     val on = Reddit.subs(prefs)
     showPage(getString(R.string.reddit_subs), Reddit.SUGGESTED.entries.mapIndexed { i, (name, about) ->
-        page("r/$name", "${getString(if (name in on) R.string.on else R.string.off)} · $about") {
+        page("r/$name", "${getString(if (name in on) R.string.on else R.string.off)} · ${getString(about)}") {
             val next = if (name in on) on - name else on + name
             if (next.isNotEmpty()) prefs.edit().putStringSet("reddit_subs", next).apply()
             pickSubreddits(i, back)
@@ -896,7 +896,7 @@ internal fun MainActivity.uploadWallpaper(forDark: Boolean, applyPhoto: Boolean 
     val active = AtomicBoolean(true)
     val status = label(getString(R.string.waiting_photo), 14f).apply { gravity = Gravity.CENTER; maxLines = 2 }
     val server = try {
-        UploadServer((1000..9999).random().toString(), File.createTempFile("upload-", ".tmp", cacheDir)) { file, video ->
+        UploadServer((1000..9999).random().toString(), File.createTempFile("upload-", ".tmp", cacheDir), t = phoneText()) { file, video ->
             if (!active.get()) return@UploadServer null
             if (video) return@UploadServer null // only photos
             val saved = importWallpaper(file, dir) ?: return@UploadServer null

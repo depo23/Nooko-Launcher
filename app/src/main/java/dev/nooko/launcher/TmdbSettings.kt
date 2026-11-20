@@ -441,7 +441,7 @@ internal fun MainActivity.openTmdbKeyQr(field: EditText, back: () -> Unit) {
     if (!address.isSiteLocalAddress) return toast(getString(R.string.connect_network))
     val active = AtomicBoolean(true)
     val transfer = try {
-        TmdbKeyTransfer(address) { key ->
+        TmdbKeyTransfer(address, phoneText()) { key ->
             ui.post { if (!isDestroyed && active.get()) configureTmdb(key, back) }
         }
     } catch (_: IOException) {

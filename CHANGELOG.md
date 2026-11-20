@@ -14,6 +14,12 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.6
+
+- **Every screen speaks your language.** Italian, French, Spanish, Portuguese, Turkish and Arabic now have all the menus, labels, hints and pop-ups. The pages that open on your phone for the TMDB key and photo upload follow the TV language too.
+- **The heart messages are translated.** Each language has its own ten messages.
+- **Clearer help text.** The screensaver help no longer mentions features that are gone.
+
 ## 1.0.5
 
 - **White clock and icons over the TMDB picture.** In fullscreen, the clock, the date and the top icons are always white. The wallpaper behind the picture no longer changes them.

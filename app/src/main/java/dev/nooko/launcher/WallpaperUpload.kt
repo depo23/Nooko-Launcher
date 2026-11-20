@@ -22,7 +22,7 @@ import java.net.Socket
  * [onUpload] runs on the server thread with the uploaded file and whether it is a video, and returns the saved item's name, or null.
  */
 internal class UploadServer(val code: String, private val temp: File, private val imagesOnly: Boolean = false,
-                            private val onUpload: (File, Boolean) -> String?) {
+                            private val t: PhoneText = { _, english -> english }, private val onUpload: (File, Boolean) -> String?) {
     private val socket = try {
         ServerSocket(8080)
     } catch (e: IOException) {
@@ -70,14 +70,14 @@ internal class UploadServer(val code: String, private val temp: File, private va
         val method = request.substringBefore(' ')
         val path = request.substringAfter(' ').substringBefore(' ')
         when {
-            path != "/$code" -> reply(out, 404, "text/plain", "Not found. Scan the code on the TV again.")
-            method == "GET" -> reply(out, 200, "text/html; charset=utf-8", page(imagesOnly))
+            path != "/$code" -> reply(out, 404, "text/plain", t("not_found", "Not found. Scan the code on the TV again."))
+            method == "GET" -> reply(out, 200, "text/html; charset=utf-8", page(imagesOnly, t))
             method == "POST" -> {
                 val length = headers["content-length"]?.toLongOrNull() ?: -1
                 val video = headers["content-type"].orEmpty().startsWith("video/") // the browser sends the file's own type
-                if (video) return reply(out, 415, "text/plain", "Choose a picture, not a video.")
+                if (video) return reply(out, 415, "text/plain", t("not_video", "Choose a picture, not a video."))
                 val max = if (imagesOnly) 5L * 1024 * 1024 else MAX_BYTES
-                if (length !in 1..max) return reply(out, 413, "text/plain", "That file is too big (${max / 1024 / 1024} MB at most).")
+                if (length !in 1..max) return reply(out, 413, "text/plain", t("too_big", "That file is too big (%1\$d MB at most).").replace("%1\$d", (max / 1024 / 1024).toString()))
                 temp.outputStream().use { file ->
                     val buf = ByteArray(64 * 1024)
                     var left = length
@@ -93,10 +93,10 @@ internal class UploadServer(val code: String, private val temp: File, private va
                 } finally {
                     temp.delete()
                 }
-                if (name != null) reply(out, 200, "text/plain", "Added \"$name\" to your TV.")
-                else reply(out, 415, "text/plain", if (video) "Use an H.264 or HEVC MP4 video up to 1080p." else "That doesn't look like a photo the TV can open.")
+                if (name != null) reply(out, 200, "text/plain", t("added", "Added \"%1\$s\" to your TV.").replace("%1\$s", name))
+                else reply(out, 415, "text/plain", if (video) t("bad_video", "Use an H.264 or HEVC MP4 video up to 1080p.") else t("bad_photo", "That doesn't look like a photo the TV can open."))
             }
-            else -> reply(out, 405, "text/plain", "Not allowed")
+            else -> reply(out, 405, "text/plain", t("not_allowed", "Not allowed"))
         }
     }
 
@@ -122,10 +122,15 @@ internal class UploadServer(val code: String, private val temp: File, private va
     private companion object {
         const val MAX_BYTES = 25L * 1024 * 1024
 
-        fun page(imagesOnly: Boolean) = """
+        /** A text as a JavaScript string between single quotes. */
+        private fun js(s: String) = "'" + s.replace("\\", "\\\\").replace("'", "\\'").replace("\n", " ") + "'"
+
+        fun page(imagesOnly: Boolean, t: PhoneText): String {
+            val choose = t(if (imagesOnly) "choose_pic" else "choose_photo", if (imagesOnly) "Choose picture" else "Choose photo")
+            return """
             <!doctype html>
-            <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-            <title>${if (imagesOnly) "Nooko Launcher app picture" else "Nooko Launcher wallpaper"}</title>
+            <html lang="${t("lang", "en")}" dir="${t("dir", "ltr")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>${htmlText(if (imagesOnly) t("up_title_pic", "Nooko Launcher app picture") else t("up_title_wall", "Nooko Launcher wallpaper"))}</title>
             <style>
               body{font:17px system-ui,sans-serif;margin:0;padding:32px 20px;background:#f7f8fa;color:#111214}
               @media (prefers-color-scheme:dark){body{background:#09090b;color:#f5f5f7}}
@@ -135,25 +140,25 @@ internal class UploadServer(val code: String, private val temp: File, private va
               @media (prefers-color-scheme:dark){button{background:#f5f5f7;color:#111214}}
               button:disabled{opacity:.35} input{display:none} #s{min-height:1.5em}
             </style></head><body>
-            <h1>${if (imagesOnly) "Change app picture" else "Add a wallpaper"}</h1>
-            <p>${if (imagesOnly) "Choose a PNG, JPEG or WebP picture up to 5 MB. Icons keep transparent areas. Banners crop to 16:9 around the centre."
-                else "Pick a photo. It shows on your TV a moment after you upload it."}</p>
-            <label><input id="f" type="file" accept="${if (imagesOnly) "image/png,image/jpeg,image/webp" else "image/*"}"><span id="n">${if (imagesOnly) "Choose picture" else "Choose photo"}</span></label>
-            <button id="b" disabled>Upload to TV</button>
+            <h1>${htmlText(if (imagesOnly) t("up_h_pic", "Change app picture") else t("up_h_wall", "Add a wallpaper"))}</h1>
+            <p>${htmlText(if (imagesOnly) t("up_p_pic", "Choose a PNG, JPEG or WebP picture up to 5 MB. Icons keep transparent areas. Banners crop to 16:9 around the centre.")
+                else t("up_p_wall", "Pick a photo. It shows on your TV a moment after you upload it."))}</p>
+            <label><input id="f" type="file" accept="${if (imagesOnly) "image/png,image/jpeg,image/webp" else "image/*"}"><span id="n">${htmlText(choose)}</span></label>
+            <button id="b" disabled>${htmlText(t("upload", "Upload to TV"))}</button>
             <div id="s"></div>
             <script>
               const f=document.getElementById('f'),b=document.getElementById('b'),s=document.getElementById('s'),n=document.getElementById('n');
-              f.onchange=()=>{b.disabled=!f.files.length;n.textContent=f.files.length?f.files[0].name:'${if (imagesOnly) "Choose picture" else "Choose photo"}';s.textContent=''};
+              f.onchange=()=>{b.disabled=!f.files.length;n.textContent=f.files.length?f.files[0].name:${js(choose)};s.textContent=''};
               b.onclick=async()=>{
-                b.disabled=true;s.textContent='Uploading…';
+                b.disabled=true;s.textContent=${js(t("uploading", "Uploading…"))};
                 try{const r=await fetch(location.pathname,{method:'POST',body:f.files[0]});
-                  s.textContent=(await r.text())+(r.ok?' You can send another.':'');}
-                catch(e){s.textContent='Couldn\'t reach the TV. Is the upload screen still open?';}
+                  s.textContent=(await r.text())+(r.ok?${js(t("send_another", " You can send another."))}:'');}
+                catch(e){s.textContent=${js(t("unreachable", "Couldn't reach the TV. Is the upload screen still open?"))};}
                 b.disabled=false;
               };
             </script></body></html>
         """
-
+        }
     }
 }
 

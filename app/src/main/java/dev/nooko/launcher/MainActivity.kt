@@ -2728,7 +2728,7 @@ class MainActivity : Activity() {
         val active = AtomicBoolean(true)
         val status = label(getString(R.string.waiting_app_picture), 14f).apply { gravity = Gravity.CENTER; maxLines = 2 }
         val server = try {
-            UploadServer((1000..9999).random().toString(), File.createTempFile("app-picture-", ".tmp", cacheDir), imagesOnly = true) { file, _ ->
+            UploadServer((1000..9999).random().toString(), File.createTempFile("app-picture-", ".tmp", cacheDir), imagesOnly = true, t = phoneText()) { file, _ ->
                 if (!active.get()) return@UploadServer null
                 val bitmap = AppPictures.fit(file, banner) ?: return@UploadServer null
                 val saved = try {
@@ -5137,4 +5137,30 @@ internal fun inkFor(frames: List<FloatArray>): Int {
     val white = 1.05f / (ends.maxOf { it.second } + 0.05f)
     val black = (ends.minOf { it.first } + 0.05f) / (darkLum + 0.05f)
     return if (black > white * 1.5f) dark else Color.WHITE
+}
+
+
+/** The words on the pages the TV serves to a phone (the TMDB key form, the photo upload), by their key in those pages. */
+private val PHONE_TEXT = mapOf(
+    "key_title" to R.string.phone_key_title, "key_copy" to R.string.phone_key_copy, "key_link" to R.string.phone_key_link,
+    "key_label" to R.string.tmdb_key, "send" to R.string.phone_send, "wifi" to R.string.phone_wifi_note,
+    "key_bad_title" to R.string.phone_key_bad_title, "key_bad" to R.string.phone_key_bad, "back_form" to R.string.phone_back_form,
+    "key_sent_title" to R.string.phone_key_sent_title, "key_sent" to R.string.phone_key_sent, "done" to R.string.done,
+    "code_gone_title" to R.string.phone_code_gone_title, "scan_tv" to R.string.phone_scan_tv,
+    "up_title_wall" to R.string.phone_up_title_wall, "up_title_pic" to R.string.phone_up_title_pic,
+    "up_h_wall" to R.string.phone_up_h_wall, "up_h_pic" to R.string.change_app_picture,
+    "up_p_wall" to R.string.phone_up_p_wall, "up_p_pic" to R.string.phone_up_p_pic,
+    "choose_pic" to R.string.phone_choose_pic, "choose_photo" to R.string.phone_choose_photo, "upload" to R.string.phone_upload,
+    "uploading" to R.string.phone_uploading, "send_another" to R.string.phone_send_another, "unreachable" to R.string.phone_unreachable,
+    "not_found" to R.string.phone_not_found, "not_video" to R.string.phone_not_video, "too_big" to R.string.phone_too_big,
+    "added" to R.string.phone_added, "bad_video" to R.string.phone_bad_video, "bad_photo" to R.string.phone_bad_photo,
+    "not_allowed" to R.string.phone_not_allowed,
+)
+
+internal fun MainActivity.phoneText(): PhoneText = { key, english ->
+    when (key) {
+        "lang" -> resources.configuration.locales[0].language
+        "dir" -> if (resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL) "rtl" else "ltr"
+        else -> PHONE_TEXT[key]?.let { getString(it) } ?: english
+    }
 }
