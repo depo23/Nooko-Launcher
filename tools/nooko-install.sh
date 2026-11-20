@@ -1,12 +1,12 @@
 #!/bin/sh
-# atv-install.sh: set Nooko Launcher up over adb for the TV it finds, and put everything back with --undo.
+# nooko-install.sh: set Nooko Launcher up over adb for the TV it finds, and put everything back with --undo.
 #
 # It looks at the TV first (Fire TV and its Fire OS version, Google TV, or Android TV, and the Android version),
 # tells you what it found and what it is going to change, and asks before it changes anything. Then it runs only
 # the steps that belong to that kind of TV, and checks that they worked. Run it from a computer on the same
 # network as the TV.
 #
-# Usage:   ./atv-install.sh [options] [TV_IP[:PORT]]
+# Usage:   ./nooko-install.sh [options] [TV_IP[:PORT]]
 #   -a APK                  install this Nooko Launcher APK first (adb install -r)
 #   -n                      only show what was found and what would change
 #   -y                      do not ask before changing
@@ -39,7 +39,7 @@
 PKG=dev.nooko.launcher
 SERVICE=$PKG/$PKG.HomeOverride
 GRANT=android.permission.WRITE_SECURE_SETTINGS
-STATE=/data/local/tmp/atv-install.state
+STATE=/data/local/tmp/nooko-install.state
 FIRE_LAUNCHER=com.amazon.tv.launcher
 
 APK= DRYRUN=0 YES=0 UNDO=0 STOCK=0 ADDR=
@@ -66,7 +66,7 @@ if [ -n "$ADDR" ]; then
   adb connect "$D" >/dev/null 2>&1
 else
   D=$(adb devices | awk 'NR>1 && $2!="" {print $1}')
-  [ "$(printf '%s\n' "$D" | grep -c .)" -eq 1 ] || die "give the TV address (./atv-install.sh 192.168.1.20), or connect exactly one device first"
+  [ "$(printf '%s\n' "$D" | grep -c .)" -eq 1 ] || die "give the TV address (./nooko-install.sh 192.168.1.20), or connect exactly one device first"
 fi
 tries=0
 while [ "$(adb -s "$D" get-state 2>/dev/null)" != device ]; do
@@ -126,7 +126,7 @@ is_listed() { printf '%s\n' "$ENABLED" | tr ':' '\n' | grep -qE "^($SERVICE|$PKG
 LISTED=0
 is_listed && LISTED=1
 # "services:{" on Fire OS 7 (Android 9), "Bound services:{" later. Fire OS names a service by its label ("Nooko Launcher: Home button").
-bound() { tv dumpsys accessibility | grep -E 'Bound services|^ *services:\{' | grep -qi atv; }
+bound() { tv dumpsys accessibility | grep -E 'Bound services|^ *services:\{' | grep -qi nooko; }
 MINFUT() { tv settings get global alarm_manager_constants | tr ',' '\n' | sed -n 's/^min_futurity=//p' | head -1; }
 
 say "Found: $MAKER $MODEL, $KINDNAME"
@@ -262,7 +262,7 @@ fi
 
 # The stock launcher goes last, and only when Nooko Launcher's service runs: with the launcher off and no service, Home goes nowhere.
 resumed() { tv dumpsys activity activities | grep ResumedActivity; }
-home_opens_atv() {
+home_opens_nooko() {
   tv am start -a android.settings.SETTINGS >/dev/null
   n=0; while resumed | grep -q "$PKG/" && [ $n -lt 5 ]; do sleep 1; n=$((n + 1)); done
   resumed | grep -q "$PKG/" && return 1 # Nooko Launcher is still in front: Settings did not open, so the test would prove nothing
@@ -283,10 +283,10 @@ if [ $STOCK = 1 ]; then
     restore_launcher; bad "could not turn off $FIRE_LAUNCHER"
   else
     ok "Fire TV launcher off"
-    if bound && home_opens_atv; then ok "Home opens Nooko Launcher"
+    if bound && home_opens_nooko; then ok "Home opens Nooko Launcher"
     else restore_launcher; bad "Nooko Launcher's service or Home did not work without the Fire TV launcher, so the launcher is on again"; fi
   fi
 fi
 say
-if [ $FAILED = 0 ]; then say "Done. Press Home on the remote. Undo with: ./atv-install.sh --undo"; else say "Done, with problems (see above)."; fi
+if [ $FAILED = 0 ]; then say "Done. Press Home on the remote. Undo with: ./nooko-install.sh --undo"; else say "Done, with problems (see above)."; fi
 exit $FAILED

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# A fake adb for run.sh, which tests tools/atv-install.sh without a TV. It keeps the TV's state in the JSON file
+# A fake adb for run.sh, which tests tools/nooko-install.sh without a TV. It keeps the TV's state in the JSON file
 # $FAKE_STATE and answers only the commands the script sends.
 #   FAKE_KIND         fire7 (Android 9) | fire8 (Android 11) | fire14 (Android 14) | google (Android 14)
 #   FAKE_INIT         a JSON object merged into the TV's first state (for example a service that is on already)

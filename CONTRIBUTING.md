@@ -60,8 +60,8 @@ Use the [bug report form](../../issues/new/choose). The TV model, Android versio
 
 The `tools/` directory contains helper scripts for testing:
 
-- `tools/atv-install.sh`: sets Nooko Launcher up over adb for the kind of TV it finds (Fire TV, Google TV, Android TV), asks before it changes anything, checks each change, and puts back what it changed with `--undo` (not the APK). See the README, "Set up over adb". `tools/atv-install-test/run.sh` tests it against a fake `adb`.
-- `tools/atv-firetv-probe.sh`: collects Home button events and logs on Fire TV without changing settings. See [#87](../../issues/87).
+- `tools/nooko-install.sh`: sets Nooko Launcher up over adb for the kind of TV it finds (Fire TV, Google TV, Android TV), asks before it changes anything, checks each change, and puts back what it changed with `--undo` (not the APK). See the README, "Set up over adb". `tools/nooko-install-test/run.sh` tests it against a fake `adb`.
+- `tools/nooko-firetv-probe.sh`: collects Home button events and logs on Fire TV without changing settings. See [#87](../../issues/87).
 
 ## Building
 

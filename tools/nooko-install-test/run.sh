@@ -1,11 +1,11 @@
 #!/bin/sh
-# Tests tools/atv-install.sh against a fake adb (the file "adb" next to this one), so that no TV is needed.
-# Run:  sh tools/atv-install-test/run.sh      (needs python3; prints the failed checks and exits 1 if there are any)
-#       TESTSH=dash sh tools/atv-install-test/run.sh   runs the script under another shell
+# Tests tools/nooko-install.sh against a fake adb (the file "adb" next to this one), so that no TV is needed.
+# Run:  sh tools/nooko-install-test/run.sh      (needs python3; prints the failed checks and exits 1 if there are any)
+#       TESTSH=dash sh tools/nooko-install-test/run.sh   runs the script under another shell
 # Each test starts from a fresh fake TV. The fake adb is described at the top of the file "adb".
 
 HERE=$(cd "$(dirname "$0")" && pwd)
-SCRIPT=$HERE/../atv-install.sh
+SCRIPT=$HERE/../nooko-install.sh
 WORK=$(mktemp -d) || exit 2
 trap 'rm -rf "$WORK"' EXIT
 mkdir "$WORK/bin"
@@ -15,7 +15,7 @@ chmod +x "$WORK/bin/adb" "$WORK/bin/sleep"
 PATH=$WORK/bin:$PATH
 FAKE_STATE=$WORK/tv.json
 export PATH FAKE_STATE
-STATE=/data/local/tmp/atv-install.state
+STATE=/data/local/tmp/nooko-install.state
 SVC=dev.nooko.launcher/dev.nooko.launcher.HomeOverride
 OTHER=com.example/com.example.Other
 N=0 BAD=0

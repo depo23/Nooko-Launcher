@@ -73,13 +73,30 @@ After that, Nooko tells you when a new version is ready and installs it for you.
 
 Create a free account at [themoviedb.org](https://www.themoviedb.org), copy your API key, and paste it in **Settings → TMDB trending**. The key stays on your TV.
 
-### Make the Home button open Nooko
+### Use Nooko as default Home
 
-Some TVs open their own home screen when you press Home. Nooko's **Finish setup** page shows how to change that on your TV. If you have a computer on the same network, `tools/atv-install.sh` does it for you, asks before every change, and can undo it.
+Some TVs open their own home screen when you press Home. To make Home open Nooko:
 
-### Moving from ATV Launcher
+1. Open Nooko and follow the **Finish setup** page in Settings.
+2. When asked, turn on **Nooko Launcher: Home button** in your TV's **Settings → Accessibility**.
 
-Install Nooko, then choose **Settings → Backup → Load settings**. Your old ATV Launcher backup is found automatically. After that you can remove ATV Launcher.
+**If your TV does not let you turn on Accessibility**, you can switch it on from a computer on the same network:
+
+1. On the TV, turn on **ADB debugging** (Fire TV: **Settings → My Fire TV → Developer options**; Android TV and Google TV: tap **Build** seven times in **About**, then open **Developer options**). Note the TV's IP address.
+2. On the computer, with [adb](https://developer.android.com/tools/releases/platform-tools) installed, run:
+
+```
+adb connect TV_IP:5555
+adb shell pm grant dev.nooko.launcher android.permission.WRITE_SECURE_SETTINGS
+adb shell settings put secure enabled_accessibility_services dev.nooko.launcher/dev.nooko.launcher.HomeOverride
+adb shell settings put secure accessibility_enabled 1
+```
+
+3. Press Home on the remote.
+
+If you already use other accessibility services, the third line replaces them. Use `tools/nooko-install.sh` instead: it keeps them, asks before every change, and can undo everything with `--undo`.
+
+**Prefer an app?** A third-party tool such as Home-on-Fire can also send the Home button to Nooko.
 
 ## Privacy
 
@@ -87,13 +104,13 @@ Nooko goes online only for what you turn on: film and series information from TM
 
 ## Troubleshooting
 
-- **Home opens the TV's own screen.** See *Make the Home button open Nooko* above.
+- **Home opens the TV's own screen.** See *Use Nooko as default Home* above.
 - **No film cards.** Add your TMDB key in **Settings → TMDB trending**, and check the TV is online.
 - **Something else.** [Open an issue](https://github.com/depo23/Nooko-Launcher/issues/new/choose). Please tell us the TV model and Android version.
 
 ## Credits and licence
 
-Nooko Launcher was inspired by [Plume](https://github.com/aradhyas8), a minimal open-source launcher by aradhyas8, and began as a fork of it. Film and series data and images come from [TMDB](https://www.themoviedb.org); streaming availability data is provided by JustWatch through TMDB. Nooko is not endorsed or certified by TMDB.
+Nooko Launcher was inspired by [Plume](https://github.com/aradhyas8). Film and series data and images come from [TMDB](https://www.themoviedb.org); streaming availability data is provided by JustWatch through TMDB. Nooko is not endorsed or certified by TMDB.
 
 Nooko Launcher is free software under the [GPL-3.0](LICENSE). See [NOTICE](NOTICE).
 

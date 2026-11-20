@@ -20,5 +20,4 @@ Put changes that are not released under `## Unreleased`. Rename that heading to 
 - **Film and series cards.** Trending titles show as cards or fullscreen, with the streaming services you picked.
 - **Watch Next.** Show your own list from Trakt, Simkl, MDBList or TMDB.
 - **Wallpapers.** Use your own photos, the Bing picture of the day, or pictures from Reddit by theme.
-- **Moving from ATV Launcher.** Select **Load settings** and Nooko Launcher finds your old backup.
 - **Backup.** **Save settings** keeps every setting you can change in one file.

@@ -1,5 +1,5 @@
 #!/bin/sh
-# atv-firetv-probe.sh: collect what Nooko Launcher needs to know about how a Fire TV (or any Android TV) handles the Home
+# nooko-firetv-probe.sh: collect what Nooko Launcher needs to know about how a Fire TV (or any Android TV) handles the Home
 # button, into one text file you can paste into https://github.com/depo23/Nooko-Launcher/issues/153
 #
 # It installs nothing and changes no setting on the TV. It reads settings, listens to the system log and the
@@ -11,8 +11,8 @@
 # The file ends with a short summary: what the TV is, whether Nooko Launcher sees it as a Fire TV, where each button press
 # landed, and how many milliseconds went by between Home and Nooko Launcher. Post that part if you post nothing else.
 #
-# Usage:   ./atv-firetv-probe.sh [options] [TV_IP[:PORT]]
-#   -l LABEL  name for this run, e.g. "stock" or "with-atv" (goes in the file name; default: run)
+# Usage:   ./nooko-firetv-probe.sh [options] [TV_IP[:PORT]]
+#   -l LABEL  name for this run, e.g. "stock" or "with-nooko" (goes in the file name; default: run)
 #   -n        no prompts: wait 8 seconds at each step instead of waiting for you to press Enter
 #   -w        also test waking the TV from standby (experimental: the TV may drop the connection while it sleeps)
 #   -h        this help
@@ -45,7 +45,7 @@ if [ -n "$1" ]; then
   adb connect "$D" >/dev/null 2>&1
 else
   D=$(adb devices | awk 'NR>1 && $2!="" {print $1}')
-  [ "$(printf '%s\n' "$D" | grep -c .)" -eq 1 ] || die "give the TV address (./atv-firetv-probe.sh 192.168.1.20), or connect exactly one device first"
+  [ "$(printf '%s\n' "$D" | grep -c .)" -eq 1 ] || die "give the TV address (./nooko-firetv-probe.sh 192.168.1.20), or connect exactly one device first"
 fi
 tries=0
 while [ "$(adb -s "$D" get-state 2>/dev/null)" != device ]; do
@@ -61,10 +61,10 @@ redact() { sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/x.x.x.x/g; s/([0-9A-Fa-f]{2}:){
 STAMP=$(date +%Y%m%d-%H%M%S)
 MODEL_RAW=$(tv getprop ro.product.model)
 MODEL=$(printf '%s' "$MODEL_RAW" | tr -c 'A-Za-z0-9\n' '_')
-DIR="atv-probe-$MODEL-$LABEL-$STAMP"
+DIR="nooko-probe-$MODEL-$LABEL-$STAMP"
 mkdir -p "$DIR" || die "cannot create $DIR"
 OUT="$DIR/probe.txt"
-TMP=$(mktemp -d "${TMPDIR:-/tmp}/atv-probe.XXXXXX") || die "cannot create a temporary directory"
+TMP=$(mktemp -d "${TMPDIR:-/tmp}/nooko-probe.XXXXXX") || die "cannot create a temporary directory"
 LOGPID= EVPID=
 cleanup() { [ -n "$LOGPID" ] && kill "$LOGPID" 2>/dev/null; [ -n "$EVPID" ] && kill "$EVPID" 2>/dev/null; rm -rf "$TMP"; }
 trap cleanup EXIT INT TERM
@@ -130,23 +130,23 @@ tv input keyevent KEYCODE_BACK >/dev/null
 sleep 1
 devgrep "Bound services|Enabled services|^ *services:\{" dumpsys accessibility
 ACC=$R
-case $ENABLED in *dev.nooko.launcher/*) ATV_SET=yes ;; *) ATV_SET=no ;; esac
+case $ENABLED in *dev.nooko.launcher/*) NOOKO_SET=yes ;; *) NOOKO_SET=no ;; esac
 # The list of bound services starts on a line "Bound services:{" (Android 10 and later) or "services:{" (Fire OS 7,
 # Android 9) and can go on over the next lines. It ends at the line that closes it ("}" or "}]"), at the next list
 # ("Enabled services:{"...), or after 20 lines, so that a word further down the dump is never taken for a service.
 BOUNDLIST=$(printf '%s\n' "$ACC" | awk '/Bound services|^ *services:\{/ { on = 1; n = 0 } on && n > 0 && /^ *[A-Za-z][A-Za-z ]*:[{[]/ { on = 0 } on { print; n++; if (/\}\]?[ \t]*$/ || n >= 20) on = 0 }')
 if [ -n "$BOUNDLIST" ]; then
   # Fire OS names a bound service by its label ("Nooko Launcher: Home button"), not by its package: look for the name.
-  if printf '%s\n' "$BOUNDLIST" | grep -qi atv; then ATV_BOUND=yes; else ATV_BOUND=no; fi
+  if printf '%s\n' "$BOUNDLIST" | grep -qi nooko; then NOOKO_BOUND=yes; else NOOKO_BOUND=no; fi
 else
-  ATV_BOUND=unknown # this Android's dumpsys has no line of bound services
+  NOOKO_BOUND=unknown # this Android's dumpsys has no line of bound services
   note "--- This Android's dumpsys has no line of bound services. First lines of what it prints instead:"
   printf '%s\n' "$ACC" | head -40 | redact | tee -a "$OUT"
 fi
 # "On" is what the steps below act on: bound if the TV says so; else, when it does not say, switched on in settings.
-if [ "$ATV_BOUND" = yes ] || { [ "$ATV_BOUND" = unknown ] && [ "$ATV_SET" = yes ]; }; then ATV_ON=yes; else ATV_ON=no; fi
-note "Nooko Launcher's Home button service: switched on in Android's settings: $ATV_SET; bound, as dumpsys says: $ATV_BOUND"
-gist "Nooko Launcher's Home button service: switched on in settings: $ATV_SET; bound (dumpsys): $ATV_BOUND"
+if [ "$NOOKO_BOUND" = yes ] || { [ "$NOOKO_BOUND" = unknown ] && [ "$NOOKO_SET" = yes ]; }; then NOOKO_ON=yes; else NOOKO_ON=no; fi
+note "Nooko Launcher's Home button service: switched on in Android's settings: $NOOKO_SET; bound, as dumpsys says: $NOOKO_BOUND"
+gist "Nooko Launcher's Home button service: switched on in settings: $NOOKO_SET; bound (dumpsys): $NOOKO_BOUND"
 
 # --- 4. Home role ---------------------------------------------------------------------------------
 section "4. Who handles Home, and what limits launching an app after Home"
@@ -275,11 +275,11 @@ lag() { # $1 = HH:MM:SS the step started at (on the TV's clock), $2 = HH:MM:SS t
     # The system starts Home from a uid below 10000 (1000, or 0 on Android 10 and later). A start of Nooko Launcher from an
     # app uid (10000 and above) is Nooko Launcher asking for its home.
     function uid(l) { if (match(l, /from uid [0-9]+/)) return substr(l, RSTART + 9, RLENGTH - 9) + 0; return -1 }
-    { own = /cmp=dev\.atv/ && uid($0) >= 10000 }
-    h == "" && /cat=\[android\.intent\.category\.HOME\]/ && !own { h = t; hp = /cmp=dev\.atv/ }
+    { own = /cmp=dev\.nooko\.launcher/ && uid($0) >= 10000 }
+    h == "" && /cat=\[android\.intent\.category\.HOME\]/ && !own { h = t; hp = /cmp=dev\.nooko\.launcher/ }
     h != "" && a == "" && /(resumed_activity|resume_activity).*(amazon\.tv\.launcher|firehomestarter|firelauncher)/ { a = t }
     h != "" && q == "" && own && /START u0 .*from uid/ { q = t }
-    h != "" && p == "" && /(resumed_activity|resume_activity).*dev\.atv/ { p = t }
+    h != "" && p == "" && /(resumed_activity|resume_activity).*dev\.nooko\.launcher/ { p = t }
     END {
       if (h == "") { print "no Home launch in the log"; exit }
       r = "Home launch seen" (hp ? " (Android started Nooko Launcher itself: it is the home app)" : "")
@@ -305,29 +305,29 @@ if [ -s "$TMP/marks.txt" ]; then
 fi
 
 # --- 8. Nooko Launcher, if present -------------------------------------------------------------------------
-if printf '%s\n' "$PKGS" | grep -q '^package:dev\.atv$'; then
+if printf '%s\n' "$PKGS" | grep -q '^package:dev\.nooko\.launcher$'; then
   section "8. Nooko Launcher on this TV"
   devgrep "versionName|installerPackageName|packageSource|WRITE_SECURE_SETTINGS" dumpsys package dev.nooko.launcher
   PLV=$(printf '%s\n' "$R" | grep -m1 versionName | sed 's/^ *//')
   [ -n "$PLV" ] || { sleep 1; PLV=$(tv dumpsys package dev.nooko.launcher | grep -m1 versionName | sed 's/^ *//'); } # the TV answered nothing: ask once more
   devrun appops get dev.nooko.launcher ACCESS_RESTRICTED_SETTINGS
   note "--- Is Nooko Launcher exempt from Doze? (a line with Nooko Launcher = yes)"
-  devgrep "atv" dumpsys deviceidle whitelist
+  devgrep "nooko" dumpsys deviceidle whitelist
   gist "Nooko Launcher ${PLV:-version not read} installed"
 fi
 
 # --- 9. one check by eye ----------------------------------------------------------------------------
 if [ $NOPROMPT -eq 0 ] && [ "$FIRE" = yes ]; then
   section "9. One check on Amazon's Network status screen"
-  note "(Asked in every run, so that the answers with Nooko Launcher's Home button on and off can be compared. It is on: $ATV_ON.)"
+  note "(Asked in every run, so that the answers with Nooko Launcher's Home button on and off can be compared. It is on: $NOOKO_ON.)"
   note "Another Fire TV launcher (dumbtv) reported that on Fire OS 8, while an accessibility service is on, Amazon's"
   note "Network status screen shows no highlighted button, so Advanced and Run Speed Test can't be reached."
   note "On the TV: Settings > Network > your network > Network status. Is one button highlighted?"
   printf '    y = yes, n = no, anything else = skip: '
   read -r ans </dev/tty || ans=
   case $ans in
-    y|Y) note "Network status: a button is highlighted."; gist "Network status screen: a button is highlighted (Nooko Launcher's service on: $ATV_ON)" ;;
-    n|N) note "Network status: NO button is highlighted."; gist "Network status screen: NO button highlighted (Nooko Launcher's service on: $ATV_ON)" ;;
+    y|Y) note "Network status: a button is highlighted."; gist "Network status screen: a button is highlighted (Nooko Launcher's service on: $NOOKO_ON)" ;;
+    n|N) note "Network status: NO button is highlighted."; gist "Network status screen: NO button highlighted (Nooko Launcher's service on: $NOOKO_ON)" ;;
     *)   note "Network status: not checked." ;;
   esac
 fi
