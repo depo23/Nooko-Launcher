@@ -969,8 +969,12 @@ class MainActivity : Activity() {
     }
 
     /** A friendly ask for support: one of a few messages, and a large QR code for Ko-fi that a phone reads from the couch. */
+    private var heartLast = -1
+
     internal fun heartPopup() {
         val messages = resources.getStringArray(R.array.heart_messages)
+        // A different message each time the heart is selected, never the same one twice in a row.
+        val pick = (messages.indices - heartLast).random().also { heartLast = it }
         val side = dp(230)
         val qr = ImageView(this).apply {
             setImageResource(R.drawable.kofi_qr)
@@ -991,7 +995,7 @@ class MainActivity : Activity() {
             addView(qr, LinearLayout.LayoutParams(side, side))
             addView(text, LinearLayout.LayoutParams(0, side, 1f).apply { marginStart = dp(24) })
         }
-        homePopup(0, getString(R.string.heart_label), messages.random(), extra,
+        homePopup(0, getString(R.string.heart_label), messages[pick], extra,
             getString(R.string.setup_close) to { setupDialog?.dismiss() }, frosted = true)
     }
 

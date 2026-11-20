@@ -464,6 +464,10 @@
         <item>One coffee keeps the glass shelf polished and the bugs off your Home screen.</item>
         <item>Nooko is made by one person and one very tired remote. A coffee helps both.</item>
         <item>Your TV runs on electricity. Its home screen runs on coffee. Help keep it running.</item>
+        <item>Nooko will never show you an ad. It will show you a QR code, though. Fair trade?</item>
+        <item>A coffee a day keeps the cluttered home screen away.</item>
+        <item>Skipping the ads cost us our business model. A coffee fixes that.</item>
+        <item>If Nooko saved you one scroll through a crowded home screen, it earned a coffee.</item>
     </string-array>
     <string name="tmdb_refresh">Refresh titles now</string>
     <string name="tmdb_refreshed">Getting new titles from TMDB</string>

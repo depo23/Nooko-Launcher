@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.2
+
+- **More to read on the heart card.** Ten messages now, and a new one shows each time you open the card.
+
 ## 1.0.1
 
 - **Support Nooko.** Select the heart in the top bar. A card shows a large QR code for Ko-fi. Scan it with your phone.
