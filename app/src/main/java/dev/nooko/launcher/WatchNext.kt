@@ -86,7 +86,10 @@ internal object WatchNext {
         else -> get(c, provider, "token") != null
     }
 
-    fun active(c: Context, prefs: SharedPreferences) = Settings(prefs).watchNextOn && ready(c, provider(prefs))
+    /** Watch Next is out of the screens for now: its code stays, and no saved setting or backup can switch it on. */
+    private const val SHOWN = false
+
+    fun active(c: Context, prefs: SharedPreferences) = SHOWN && Settings(prefs).watchNextOn && ready(c, provider(prefs))
 
     // ---------- the web ----------
 

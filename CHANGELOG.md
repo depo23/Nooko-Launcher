@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.3
+
+- **Watch Next is hidden for now.** The Watch Next switch and its sign-in settings are removed from **TMDB trending**. The cards always show TMDB trending titles.
+
 ## 1.0.2
 
 - **More to read on the heart card.** Ten messages now, and a new one shows each time you open the card.
@@ -26,6 +30,5 @@ Put changes that are not released under `## Unreleased`. Rename that heading to 
 
 - **Welcome to Nooko Launcher.** A calm home screen for Android TV and Google TV, with your apps on a glass shelf.
 - **Film and series cards.** Trending titles show as cards or fullscreen, with the streaming services you picked.
-- **Watch Next.** Show your own list from Trakt, Simkl, MDBList or TMDB.
 - **Wallpapers.** Use your own photos, the Bing picture of the day, or pictures from Reddit by theme.
 - **Backup.** **Save settings** keeps every setting you can change in one file.

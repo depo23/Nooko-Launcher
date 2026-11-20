@@ -526,8 +526,7 @@ internal fun MainActivity.renderSettings(at: Int = 0) {
     val sections = listOf(
         Triple(R.string.section_style, "${rows[R.string.theme]!!.second} · ${getString(glassName())}",
             listOf(R.string.theme, R.string.glass, R.string.app_animations)),
-        Triple(R.string.section_tmdb, rows[R.string.tmdb_row]!!.second, listOf(R.string.tmdb_row, R.string.tmdb_mode, R.string.tmdb_region, R.string.tmdb_services, R.string.tmdb_refresh,
-            R.string.wn_toggle, R.string.wn_service, R.string.wn_account)),
+        Triple(R.string.section_tmdb, rows[R.string.tmdb_row]!!.second, listOf(R.string.tmdb_row, R.string.tmdb_mode, R.string.tmdb_region, R.string.tmdb_services, R.string.tmdb_refresh)),
         Triple(R.string.section_app_row, "${rows[R.string.apps_in_row]!!.second} · ${rows[R.string.row_position]!!.second}",
             listOf(R.string.edit_apps_row, R.string.apps_in_row, R.string.fav_sort, R.string.sort_apps, R.string.icon_style, R.string.row_size, R.string.app_names, R.string.row_position)),
         // "When hidden" only means something once the row can hide.

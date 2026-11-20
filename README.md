@@ -29,7 +29,6 @@ Most TV home screens are crowded with ads and suggestions you never asked for. N
 **What to watch, right at hand**
 - Trending films and series as big cards or a fullscreen showcase, with a synopsis, rating, cast and the streaming services that carry each title.
 - Pick your country and your own services, and see only what you can really watch.
-- **Watch Next:** show your own list from Trakt, Simkl, MDBList or TMDB.
 - **Continue Watching** from your apps, in one place.
 
 **A picture you love**
@@ -53,7 +52,7 @@ Open **Settings** from the top bar. You can change:
 |---|---|
 | **Look** | Light or dark, glass shelf, icon style, app size, wallpaper |
 | **Apps** | Which apps show, in what order, pinned favourites, a second row of more apps |
-| **Watch** | Cards or fullscreen, your country and streaming services, Watch Next |
+| **Watch** | Cards or fullscreen, your country and streaming services |
 | **Clock and weather** | Format, place, units |
 | **Screensaver** | Your photos or trending titles, and when it starts |
 | **Remote** | What each button does, and what Home opens |
@@ -100,7 +99,7 @@ If you already use other accessibility services, the third line replaces them. U
 
 ## Privacy
 
-Nooko goes online only for what you turn on: film and series information from TMDB, your Watch Next list, the weather, wallpapers from Bing or Reddit, and update checks. There are no ads, no analytics and no account. Your key and sign-ins stay on your TV and are saved in a backup only if you ask.
+Nooko goes online only for what you turn on: film and series information from TMDB, the weather, wallpapers from Bing or Reddit, and update checks. There are no ads, no analytics and no account. Your key and sign-ins stay on your TV and are saved in a backup only if you ask.
 
 ## Troubleshooting
 
