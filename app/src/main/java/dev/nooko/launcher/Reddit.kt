@@ -25,6 +25,7 @@ internal object Reddit {
 
     /** Subreddit to the string that says in a few words what it shows. All of them are picture subreddits that are safe for work. */
     val SUGGESTED = linkedMapOf(
+        "TVWallpapersSFW" to R.string.reddit_about_tvwallpapers,
         "EarthPorn" to R.string.reddit_about_earthporn,
         "LakePorn" to R.string.reddit_about_lakeporn,
         "MountainPorn" to R.string.reddit_about_mountainporn,
@@ -44,8 +45,8 @@ internal object Reddit {
         "MinimalWallpaper" to R.string.reddit_about_minimalwallpaper,
         "Amoledbackgrounds" to R.string.reddit_about_amoledbackgrounds,
     )
-    private val DEFAULT = setOf("EarthPorn", "SkyPorn", "spaceporn")
-    private const val AGENT = "Nooko-Launcher/1.0 (Android TV home screen; wallpaper from Reddit's public feed)"
+    private val DEFAULT = setOf("TVWallpapersSFW")
+    private const val AGENT = "android:dev.nooko.launcher:v1.0 (Android TV home screen; wallpaper from the public feed)"
     private val image = Regex("https://i\\.redd\\.it/[A-Za-z0-9]+\\.(?:jpe?g|png)")
 
     @Volatile
@@ -101,8 +102,9 @@ internal object Reddit {
     private fun download(c: Context, last: String?, subs: List<String>): String? {
         for (sub in subs) {
             // One subreddit that does not answer (gone, limited) is skipped: the next one is tried.
-            val feed = try { connect("https://www.reddit.com/r/$sub/top/.rss?t=week").inputStream.use { it.readBytes().decodeToString() } } catch (e: IOException) { continue }
-            val candidates = image.findAll(feed).map { it.value }.distinct().filter { it != last }.take(12).toList().shuffled().take(4)
+            val feed = feed(sub) ?: continue
+            val candidates = image.findAll(feed).map { it.value }.distinct().filter { it != last }.take(40).toList().shuffled().take(5)
+            android.util.Log.i("Nooko Launcher", "Reddit r/$sub: ${candidates.size} pictures to try")
             for (url in candidates) {
                 val part = File(c.filesDir, "reddit.part")
                 try {
@@ -118,6 +120,20 @@ internal object Reddit {
                 } finally {
                     part.delete()
                 }
+            }
+        }
+        return null
+    }
+
+    /** The week's top posts of a subreddit: the feed first, then other addresses when Reddit refuses. Each refusal is logged. */
+    private fun feed(sub: String): String? {
+        for (url in listOf("https://www.reddit.com/r/$sub/top/.rss?t=week", "https://old.reddit.com/r/$sub/top/.rss?t=week", "https://www.reddit.com/r/$sub/top.json?t=week&limit=50&raw_json=1")) {
+            try {
+                val conn = connect(url)
+                if (conn.responseCode in 200..299) return conn.inputStream.use { it.readBytes().decodeToString() }
+                android.util.Log.w("Nooko Launcher", "Reddit ${conn.responseCode} for $url")
+            } catch (e: IOException) {
+                android.util.Log.w("Nooko Launcher", "Reddit failed for $url ($e)")
             }
         }
         return null

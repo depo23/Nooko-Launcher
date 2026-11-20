@@ -536,4 +536,5 @@
     <string name="phone_bad_video">1080p\'ye kadar H.264 veya HEVC bir MP4 video kullanın.</string>
     <string name="phone_bad_photo">Bu, TV\'nin açabileceği bir fotoğrafa benzemiyor.</string>
     <string name="phone_not_allowed">İzin verilmiyor</string>
+    <string name="reddit_about_tvwallpapers">TV duvar kağıtları, her yaşa uygun</string>
 </resources>

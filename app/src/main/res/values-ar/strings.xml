@@ -565,4 +565,5 @@
     <string name="phone_bad_video">استخدم مقطع MP4 بترميز H.264 أو HEVC حتى 1080p.</string>
     <string name="phone_bad_photo">لا يبدو أنها صورة يستطيع التلفزيون فتحها.</string>
     <string name="phone_not_allowed">غير مسموح</string>
+    <string name="reddit_about_tvwallpapers">خلفيات للتلفزيون، مناسبة للجميع</string>
 </resources>

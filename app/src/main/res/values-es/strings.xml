@@ -543,4 +543,5 @@
     <string name="phone_bad_video">Usa un vídeo MP4 H.264 o HEVC de hasta 1080p.</string>
     <string name="phone_bad_photo">No parece una foto que el TV pueda abrir.</string>
     <string name="phone_not_allowed">No permitido</string>
+    <string name="reddit_about_tvwallpapers">Fondos para TV, aptos para todos</string>
 </resources>
