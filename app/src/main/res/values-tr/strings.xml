@@ -354,7 +354,6 @@
     <string name="tmdb_row">TMDB anahtarı</string>
     <string name="help_tmdb">Bu haftanın trend başlıklarını uygulamaların üstünde göstermek için ücretsiz TMDB API anahtarınızı yapıştırın. Anahtarı themoviedb.org\'dan alın. Yayın platformu bilgisi JustWatch\'tan gelir.</string>
     <string name="reddit_wallpaper">Reddit</string>
-    <string name="reddit_subs">Subreddit\'ler</string>
     <string name="reddit_new">Şimdi yeni resim</string>
     <string name="more_pin">Sabitle</string>
     <string name="more_unpin">Sabitlemeyi kaldır</string>
@@ -488,24 +487,6 @@
         <item>Reklamlardan vazgeçmek iş modelimize mal oldu. Bir kahve bunu çözer.</item>
         <item>Nooko kalabalık bir ana ekranda sizi bir kaydırmadan kurtardıysa, bir kahveyi hak etti.</item>
     </string-array>
-    <string name="reddit_about_earthporn">Dünya: manzaralar ve doğa</string>
-    <string name="reddit_about_lakeporn">Dünya: göller ve nehirler</string>
-    <string name="reddit_about_mountainporn">Dünya: dağlar</string>
-    <string name="reddit_about_forestporn">Dünya: ormanlar</string>
-    <string name="reddit_about_desertporn">Dünya: çöller</string>
-    <string name="reddit_about_autumnporn">Dünya: sonbahar renkleri</string>
-    <string name="reddit_about_waterporn">Dünya: okyanuslar, denizler ve şelaleler</string>
-    <string name="reddit_about_skyporn">Gökyüzü: bulutlar, gün batımları ve fırtınalar</string>
-    <string name="reddit_about_spaceporn">Uzay: gezegenler, galaksiler ve bulutsular</string>
-    <string name="reddit_about_astrophotography">Uzay: gece gökyüzü fotoğrafları</string>
-    <string name="reddit_about_imaginarylandscapes">Sanat: boyanmış fantastik manzaralar</string>
-    <string name="reddit_about_cityporn">Şehirler ve silüetler</string>
-    <string name="reddit_about_wallpaper">Her türden duvar kağıdı, soyut olanlar da</string>
-    <string name="reddit_about_wallpapers">Her türden duvar kağıdı</string>
-    <string name="reddit_about_widescreenwallpaper">Geniş duvar kağıtları</string>
-    <string name="reddit_about_wqhd_wallpaper">Yüksek çözünürlüklü duvar kağıtları</string>
-    <string name="reddit_about_minimalwallpaper">Sade, minimal duvar kağıtları</string>
-    <string name="reddit_about_amoledbackgrounds">Koyu, neredeyse siyah soyut arka planlar</string>
     <string name="phone_key_title">TMDB anahtarı gönder</string>
     <string name="phone_key_copy">v3 anahtarınızı %1$s sayfasından kopyalayın.</string>
     <string name="phone_key_link">TMDB API ayarları</string>

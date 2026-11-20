@@ -49,7 +49,7 @@ class SettingsTransferTest {
     @Test fun backsUpTheAppleTvLayoutAndWallpaperSources() {
         val saved = SettingsTransfer.portable(mapOf(
             "row_size" to "tv", "grid_v1" to true, "look_v2" to true,
-            "home_hidden" to setOf("com.example.app", "tv.example"), "reddit_subs" to setOf("EarthPorn", "SkyPorn"),
+            "home_hidden" to setOf("com.example.app", "tv.example"),
             "wp_light" to "bing", "wp_dark" to "file:/storage/photo.jpg",
         ))
         assertEquals("usage", SettingsTransfer.validate(mapOf("fav_sort" to "usage"))["fav_sort"])
@@ -64,7 +64,6 @@ class SettingsTransferTest {
         assertEquals("bing", saved["wp_light"])
         assertFalse("a picture on this TV does not travel", saved.containsKey("wp_dark"))
         assertEquals("reddit", SettingsTransfer.validate(mapOf("wp_light" to "reddit"))["wp_light"])
-        assertThrows(IllegalArgumentException::class.java) { SettingsTransfer.validate(mapOf("reddit_subs" to setOf("not a sub!"))) }
     }
 
     @Test fun savesEveryUserSettingAndLeavesOutAValueThatDoesNotFit() {

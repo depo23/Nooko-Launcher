@@ -40,12 +40,11 @@ internal object SettingsTransfer {
         "smooth_volume", "video_keep_one", "backup_tmdb")
     private val clockFormats = ClockFormat.entries.associateBy { it.key }
     private val keys = choices.keys + switches + clockFormats.keys + setOf("order", "row_hidden", "cw_off", "row_name", "top_bar",
-        "wp_every", "geo_city", "geo_lat", "geo_lon", "home_hidden", "reddit_subs", "wp_light", "wp_dark", "tmdb_key", "tmdb_region", "tmdb_svc_ids",
+        "wp_every", "geo_city", "geo_lat", "geo_lon", "home_hidden", "wp_light", "wp_dark", "tmdb_key", "tmdb_region", "tmdb_svc_ids",
         "cards_rows", "cards_src", "keymap", "glass_hue", "ch_flip", "hidden_watch",
         "wn_secrets")
     private val region = Regex("[A-Z]{2}")
     private val tmdbKey = Regex("[a-fA-F0-9]{32}")
-    private val subreddit = Regex("[A-Za-z0-9_]{2,30}")
     private val wallpaper = Regex("bing|reddit|plain:[A-Za-z ]{2,20}")
     private val pkg = Regex("[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)+")
     private val word = Regex("[a-z_]{1,24}")
@@ -194,10 +193,6 @@ internal object SettingsTransfer {
                 }
                 key == "tmdb_svc_ids" -> {
                     require(value is Collection<*> && value.size <= 200 && value.all { it is String && it.length in 1..8 && it.all(Char::isDigit) }) { "Invalid $key" }
-                    value.filterIsInstance<String>().toSet()
-                }
-                key == "reddit_subs" -> {
-                    require(value is Collection<*> && value.size in 1..32 && value.all { it is String && subreddit.matches(it) }) { "Invalid $key" }
                     value.filterIsInstance<String>().toSet()
                 }
                 key == "wp_light" || key == "wp_dark" -> {

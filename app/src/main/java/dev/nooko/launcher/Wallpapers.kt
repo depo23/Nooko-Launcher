@@ -339,7 +339,6 @@ internal fun MainActivity.pickActiveWallpaper(forDark: Boolean) {
         rows += page(getString(R.string.wall_shuffle_now)) { nextPhoto(); scheduleWallpaperTick(); again() }
     }
     if (current == Reddit.CHOICE) {
-        rows += page(getString(R.string.reddit_subs), getString(R.string.n_on, Reddit.subs(prefs).size)) { pickSubreddits(back = again) }
         rows += page(getString(R.string.reddit_new)) { Reddit.refresh(applicationContext, prefs, force = true); again() }
     }
     val preview = wallpaperThumb(current, forDark, true)
@@ -371,22 +370,6 @@ internal fun MainActivity.pickAutomaticWallpaper(forDark: Boolean, focusOn: Stri
     }
     wallGrid(getString(R.string.wall_automatic), listOf(null to tiles), forDark, currentWallpaper(forDark), focusOn,
         columns = 2, tileHeight = 94) { pickWallpaper(forDark, getString(R.string.wall_automatic)) }
-}
-
-/** Which subreddits the Reddit wallpaper draws from: each toggles on OK; at least one stays on. */
-internal fun MainActivity.pickSubreddits(focus: Int = 0, back: () -> Unit) {
-    val on = Reddit.subs(prefs)
-    showPage(getString(R.string.reddit_subs), Reddit.SUGGESTED.entries.mapIndexed { i, (name, about) ->
-        page("r/$name", "${getString(if (name in on) R.string.on else R.string.off)} · ${getString(about)}") {
-            val next = if (name in on) on - name else on + name
-            if (next.isNotEmpty()) prefs.edit().putStringSet("reddit_subs", next).apply()
-            pickSubreddits(i, back)
-        }
-    }, focus) {
-        prefs.edit().remove("reddit_last").putLong("reddit_day", 0).apply()
-        Reddit.refresh(applicationContext, prefs, force = true)
-        back()
-    }
 }
 
 internal fun MainActivity.pickMyPhotos(forDark: Boolean, focusOn: String? = null) {

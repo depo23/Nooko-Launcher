@@ -365,7 +365,6 @@
     <string name="tmdb_row">Clé TMDB</string>
     <string name="help_tmdb">Collez votre clé d\'API TMDB gratuite pour afficher les titres tendance de la semaine au-dessus des applications. Obtenez une clé sur themoviedb.org. La disponibilité en streaming vient de JustWatch.</string>
     <string name="reddit_wallpaper">Reddit</string>
-    <string name="reddit_subs">Subreddits</string>
     <string name="reddit_new">Nouvelle image maintenant</string>
     <string name="more_pin">Épingler</string>
     <string name="more_unpin">Désépingler</string>
@@ -493,24 +492,6 @@
         <item>Renoncer aux publicités nous a coûté notre modèle économique. Un café règle ça.</item>
         <item>Si Nooko vous a épargné un seul défilement sur un écran d\'accueil surchargé, il a mérité un café.</item>
     </string-array>
-    <string name="reddit_about_earthporn">Terre : paysages et nature</string>
-    <string name="reddit_about_lakeporn">Terre : lacs et rivières</string>
-    <string name="reddit_about_mountainporn">Terre : montagnes</string>
-    <string name="reddit_about_forestporn">Terre : forêts</string>
-    <string name="reddit_about_desertporn">Terre : déserts</string>
-    <string name="reddit_about_autumnporn">Terre : couleurs d\'automne</string>
-    <string name="reddit_about_waterporn">Terre : océans, mers et cascades</string>
-    <string name="reddit_about_skyporn">Ciel : nuages, couchers de soleil et orages</string>
-    <string name="reddit_about_spaceporn">Espace : planètes, galaxies et nébuleuses</string>
-    <string name="reddit_about_astrophotography">Espace : photos du ciel nocturne</string>
-    <string name="reddit_about_imaginarylandscapes">Art : paysages fantastiques peints</string>
-    <string name="reddit_about_cityporn">Villes et panoramas urbains</string>
-    <string name="reddit_about_wallpaper">Fonds d\'écran de tout genre, abstraits aussi</string>
-    <string name="reddit_about_wallpapers">Fonds d\'écran de tout genre</string>
-    <string name="reddit_about_widescreenwallpaper">Fonds d\'écran panoramiques</string>
-    <string name="reddit_about_wqhd_wallpaper">Fonds d\'écran haute résolution</string>
-    <string name="reddit_about_minimalwallpaper">Fonds d\'écran épurés et minimalistes</string>
-    <string name="reddit_about_amoledbackgrounds">Fonds abstraits sombres, presque noirs</string>
     <string name="phone_key_title">Envoyer une clé TMDB</string>
     <string name="phone_key_copy">Copiez votre clé v3 depuis %1$s.</string>
     <string name="phone_key_link">paramètres d\'API de TMDB</string>

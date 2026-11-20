@@ -18,6 +18,7 @@ Put changes that are not released under `## Unreleased`. Rename that heading to 
 
 - **Every screen speaks your language.** Italian, French, Spanish, Portuguese, Turkish and Arabic now have all the menus, labels, hints and pop-ups. The pages that open on your phone for the TMDB key and photo upload follow the TV language too.
 - **The heart messages are translated.** Each language has its own ten messages.
+- **Reddit wallpaper.** It shows one random picture a day from r/TVWallpapersSFW. The subreddit list is gone.
 - **Clearer help text.** The screensaver help no longer mentions features that are gone.
 
 ## 1.0.5
