@@ -185,6 +185,7 @@ internal fun MainActivity.exitFull() {
     billboard.visibility = View.GONE
     heroBackdrop.visibility = View.GONE
     moreShade.alpha = 0f
+    findViewById<View>(R.id.clock).post { fitInk() }
 }
 
 internal fun MainActivity.setUpBillboard() {
@@ -212,6 +213,7 @@ internal fun MainActivity.enterFull() {
     val any = heroList.isNotEmpty()
     billboard.visibility = if (any) View.VISIBLE else View.GONE
     heroBackdrop.visibility = if (any) View.VISIBLE else View.GONE
+    findViewById<View>(R.id.clock).post { fitInk() }
     if (!any) return
     showBillboard(bbIndex.coerceIn(0, heroList.size - 1), first = true)
     ui.removeCallbacks(heroTick)

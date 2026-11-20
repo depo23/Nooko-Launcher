@@ -1251,10 +1251,12 @@ class MainActivity : Activity() {
 
     internal fun fitInk() {
         val top = listOf(R.id.clock, R.id.date, R.id.weather).map { findViewById<TextView>(it) }
-        val topInk = inkBehind(top)
+        // Over the fullscreen TMDB picture the clock and the top icons are always white, whatever the wallpaper behind it is.
+        val fullPicture = heroFull() && heroBackdrop.visibility == View.VISIBLE
+        val topInk = if (fullPicture) Color.WHITE else inkBehind(top)
         for (v in top) ink(v, topInk, fade = true)
         val icons = topIcons()
-        iconInk = inkBehind(icons)
+        iconInk = if (fullPicture) Color.WHITE else inkBehind(icons)
         for (v in icons) {
             if (!v.isFocused) v.setColorFilter(iconInk)
             iconShadow(v)

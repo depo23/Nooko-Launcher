@@ -16,6 +16,8 @@ Put changes that are not released under `## Unreleased`. Rename that heading to 
 
 ## 1.0.5
 
+- **White clock and icons over the TMDB picture.** In fullscreen, the clock, the date and the top icons are always white. The wallpaper behind the picture no longer changes them.
+- **Smaller detail lines.** The year, rating, director and cast lines use a smaller font.
 - **Load your ATV Launcher settings.** Install ATV Launcher 1.7.4 or newer. In Nooko Launcher, select **Backup**, then **Load settings**. Nooko Launcher asks ATV Launcher for your settings, so no file is needed.
 
 ## 1.0.4
