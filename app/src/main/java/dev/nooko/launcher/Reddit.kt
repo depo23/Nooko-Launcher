@@ -47,7 +47,7 @@ internal object Reddit {
     )
     private val DEFAULT = setOf("TVWallpapersSFW")
     private const val AGENT = "android:dev.nooko.launcher:v1.0 (Android TV home screen; wallpaper from the public feed)"
-    private val image = Regex("https://i\\.redd\\.it/[A-Za-z0-9]+\\.(?:jpe?g|png)")
+    private val image = Regex("https://i\\.redd\\.it/[A-Za-z0-9_-]+\\.(?:jpe?g|png)")
 
     @Volatile
     var onChanged: (() -> Unit)? = null
@@ -125,13 +125,28 @@ internal object Reddit {
         return null
     }
 
-    /** The week's top posts of a subreddit: the feed first, then other addresses when Reddit refuses. Each refusal is logged. */
+    private const val BROWSER = "Mozilla/5.0 (Linux; Android 11; AFTMA08C15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+    /**
+     * The week's top posts of a subreddit. Reddit refuses some requests (429, or a fake 404) depending on how they look, so
+     * several addresses and ways of asking are tried in turn; the first answer that holds pictures wins. Each failure is logged.
+     */
     private fun feed(sub: String): String? {
-        for (url in listOf("https://www.reddit.com/r/$sub/top/.rss?t=week", "https://old.reddit.com/r/$sub/top/.rss?t=week", "https://www.reddit.com/r/$sub/top.json?t=week&limit=50&raw_json=1")) {
+        val tries = listOf(
+            "https://www.reddit.com/r/$sub/top/.rss?t=week" to AGENT,
+            "https://old.reddit.com/r/$sub/top/.rss?t=week" to AGENT,
+            "https://www.reddit.com/r/$sub/top/.rss?t=week" to BROWSER,
+            "https://old.reddit.com/r/$sub/top.json?t=week&limit=50&raw_json=1" to BROWSER,
+            "https://www.reddit.com/r/$sub/top.json?t=week&limit=50&raw_json=1" to BROWSER,
+        )
+        for ((url, agent) in tries) {
             try {
-                val conn = connect(url)
-                if (conn.responseCode in 200..299) return conn.inputStream.use { it.readBytes().decodeToString() }
-                android.util.Log.w("Nooko Launcher", "Reddit ${conn.responseCode} for $url")
+                val conn = Http.open(url, mapOf("User-Agent" to agent, "Accept" to "application/rss+xml, application/json, text/xml, */*"))
+                val code = conn.responseCode
+                if (code !in 200..299) { android.util.Log.w("Nooko Launcher", "Reddit $code for $url"); continue }
+                val body = conn.inputStream.use { it.readBytes().decodeToString() }
+                if (image.containsMatchIn(body)) return body
+                android.util.Log.w("Nooko Launcher", "Reddit $code, no pictures, ${body.length} bytes, for $url: ${body.take(160).replace('\n', ' ')}")
             } catch (e: IOException) {
                 android.util.Log.w("Nooko Launcher", "Reddit failed for $url ($e)")
             }
