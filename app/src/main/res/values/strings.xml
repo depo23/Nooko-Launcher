@@ -456,7 +456,15 @@
     <string name="wn_help_tmdb">Uses your TMDB key. Sign in, then approve Nooko Launcher on themoviedb.org. It lists your TMDB watchlist.</string>
     <string name="backup_allow_files">Allow access to files, then select Load settings again.</string>
     <string name="heart_label">Support Nooko Launcher</string>
-    <string name="heart_soon">A way to support Nooko Launcher is coming.</string>
+    <string name="heart_scan">Scan with your phone\'s camera to buy Nooko a coffee.</string>
+    <string-array name="heart_messages">
+        <item>No ads. No tracking. No account. Just a launcher that pays its rent in coffee.</item>
+        <item>Nooko never asks for your data. It only asks, very politely, for a coffee.</item>
+        <item>Other launchers sell your attention. Nooko sells nothing, so it runs on coffee.</item>
+        <item>One coffee keeps the glass shelf polished and the bugs off your Home screen.</item>
+        <item>Nooko is made by one person and one very tired remote. A coffee helps both.</item>
+        <item>You found the heart. Press OK on your phone instead and make a developer\'s evening.</item>
+    </string-array>
     <string name="tmdb_refresh">Refresh titles now</string>
     <string name="tmdb_refreshed">Getting new titles from TMDB</string>
     <string name="help_tmdb_refresh">Gets the trending titles of this week from TMDB again, in a new random order.</string>

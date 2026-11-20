@@ -554,7 +554,7 @@ class MainActivity : Activity() {
             R.id.systemSettings to { unlock { openSettings(Settings.ACTION_SETTINGS) } },
             R.id.launcherSettings to { unlock { openLauncherSettings() } },
             R.id.powerButton to { powerDialog() },
-            R.id.heartButton to { toast(getString(R.string.heart_soon)) }, // a donation panel comes here
+            R.id.heartButton to { heartPopup() },
             R.id.recentsButton to { openAllApps(recent = true) },
             R.id.screensaverButton to { startScreensaver() },
         )) findViewById<ImageView>(id).apply {
@@ -966,6 +966,33 @@ class MainActivity : Activity() {
                 }
             },
             getString(R.string.setup_no_menu) to { adbPopup() })
+    }
+
+    /** A friendly ask for support: one of a few messages, and a large QR code for Ko-fi that a phone reads from the couch. */
+    internal fun heartPopup() {
+        val messages = resources.getStringArray(R.array.heart_messages)
+        val side = dp(230)
+        val qr = ImageView(this).apply {
+            setImageResource(R.drawable.kofi_qr)
+            scaleType = ImageView.ScaleType.FIT_CENTER
+            setPadding(dp(6), dp(6), dp(6), dp(6))
+            background = GradientDrawable().apply { cornerRadius = dp(14).toFloat(); setColor(Color.WHITE) }
+        }
+        val text = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_VERTICAL
+            addView(label(getString(R.string.heart_scan), 16f).apply { maxLines = 3; ellipsize = null; setLineSpacing(0f, 1.15f) })
+            addView(label(KOFI_URL.removePrefix("https://"), 20f).apply { setTypeface(typeface, Typeface.BOLD); setPadding(0, dp(10), 0, 0) })
+        }
+        val extra = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(0, dp(16), 0, 0)
+            addView(qr, LinearLayout.LayoutParams(side, side))
+            addView(text, LinearLayout.LayoutParams(0, side, 1f).apply { marginStart = dp(24) })
+        }
+        homePopup(0, getString(R.string.heart_label), messages.random(), extra,
+            getString(R.string.setup_close) to { setupDialog?.dismiss() }, frosted = true)
     }
 
     /** The one-time grant lets Nooko Launcher switch the service on itself, past the greyed-out toggle. */
@@ -4961,6 +4988,7 @@ class MainActivity : Activity() {
         const val RIM_SIDE_LIT = 0x17FFFFFF
         const val PANEL_EDGE = 0x0FFFFFFF // white 6%, the settings panel's left edge
         const val HELP_URL = "https://github.com/depo23/Nooko-Launcher#use-nooko-as-default-home"
+        const val KOFI_URL = "https://ko-fi.com/nooko"
         const val TOGGLE_ON = "\u0000on" // row values drawn as a switch instead of text
         const val TOGGLE_OFF = "\u0000off"
         const val BANNER_DIM = 0.3f // black laid over a colour banner at rest, so the selected one stands out

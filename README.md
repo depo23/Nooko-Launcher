@@ -108,6 +108,10 @@ Nooko goes online only for what you turn on: film and series information from TM
 - **No film cards.** Add your TMDB key in **Settings → TMDB trending**, and check the TV is online.
 - **Something else.** [Open an issue](https://github.com/depo23/Nooko-Launcher/issues/new/choose). Please tell us the TV model and Android version.
 
+## Support Nooko
+
+Nooko is free, with no ads. If it makes your TV nicer, you can [buy it a coffee on Ko-fi](https://ko-fi.com/nooko). On your TV, select the heart in the top bar and scan the code with your phone.
+
 ## Credits and licence
 
 Nooko Launcher was inspired by [Plume](https://github.com/aradhyas8). Film and series data and images come from [TMDB](https://www.themoviedb.org); streaming availability data is provided by JustWatch through TMDB. Nooko is not endorsed or certified by TMDB.
