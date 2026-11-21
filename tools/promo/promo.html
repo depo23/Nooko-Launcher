@@ -1,0 +1,99 @@
+<!doctype html><meta charset=utf-8><title>Nooko promo</title>
+<!-- Proportions follow the app at 1280x720 (1dp = 1.333px): content inset 48dp, TMDB cards (screen-96dp-2*24dp-36dp)/2 wide at 54%
+     height with 16dp corners and a 24dp gap, 16:9 banner tiles six to a row with a 16dp gap, lift 1.05 / 1.12 on focus. -->
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1280px;height:720px;overflow:hidden;background:#05060a;font-family:"Google Sans","SF Pro Display","Helvetica Neue",Arial,sans-serif;color:#fff}
+#tv{position:relative;width:1280px;height:720px;overflow:hidden}
+.bd{position:absolute;inset:0}
+#wall{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,#3a7bd5 0%,transparent 55%),radial-gradient(ellipse at 10% 90%,#7b2ff7 0%,transparent 60%),linear-gradient(160deg,#102a54,#1b1146 60%,#0b1030)}
+#bds{position:absolute;inset:0;opacity:0}
+#sh{position:absolute;inset:0}
+#clock{position:absolute;left:64px;top:36px;font-size:62px;font-weight:300;letter-spacing:-1px;line-height:1}
+#date{position:absolute;left:66px;top:106px;font-size:17px;font-weight:500}
+#icons{position:absolute;right:64px;top:46px;display:flex;gap:34px;font-size:24px;align-items:center}
+#icons span{width:28px;text-align:center}
+#txt{position:absolute;left:72px;top:330px;width:640px;opacity:0}
+#title{font-size:44px;font-weight:700;letter-spacing:-.8px;line-height:1.05}
+.m{margin-top:10px;font-size:15px;color:rgba(255,255,255,.9);line-height:1.5}
+#over{margin-top:12px;font-size:16.5px;line-height:1.45;width:640px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.cr{margin-top:12px;font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.92)}
+#rowC{position:absolute;left:0;top:238px;width:1280px;height:300px}
+.card{position:absolute;top:10px;width:520px;height:281px;border-radius:21px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.5);background:#222 center/cover}
+.card .sc{position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.8))}
+.card .tx{position:absolute;left:24px;right:24px;bottom:18px}
+.card .t{font-size:27px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.card .s{font-size:19px;color:rgba(255,255,255,.8);text-shadow:0 1px 4px rgba(0,0,0,.6)}
+#rowA{position:absolute;left:0;top:566px;width:1280px;height:130px}
+.tile{position:absolute;top:0;width:173px;height:97px;border-radius:16px;overflow:hidden;display:grid;place-items:center;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.lbl{position:absolute;top:102px;font-size:15px;text-align:center;width:173px}
+#hint{position:absolute;right:30px;bottom:18px;font-size:13px;background:rgba(255,255,255,.16);padding:8px 14px;border-radius:20px;backdrop-filter:blur(14px);display:none}
+#cred{position:absolute;left:64px;bottom:4px;font-size:10px;opacity:.5}
+</style>
+<div id=tv>
+ <div id=wall></div><div id=bds></div><div id=sh></div>
+ <div id=clock>18:20</div><div id=date>Fri 20 Nov</div>
+ <div id=icons><span>◠</span><span>▦</span><span>⚙</span><span>☰</span><span>♥</span></div>
+ <div id=txt><div id=title></div><div class=m id=m1></div><div class=m id=m2 style="margin-top:2px"></div><div id=over></div><div class=cr id=cr></div></div>
+ <div id=rowC></div><div id=rowA></div><div id=hint></div>
+ <div id=cred>Data and images: TMDB · availability: JustWatch</div>
+</div>
+<script src="data/data.js"></script>
+<script>
+const rt=m=>m?`${Math.floor(m/60)}h ${String(m%60).padStart(2,"0")}min`:"";
+const T=TM.map(t=>({n:t.n,y:t.y,r:t.r&&t.r!=="0.0"?"★ "+t.r:"",g:t.g.join(", "),d:t.dir?"Directed by "+t.dir:"",c:t.cast.join(", "),o:t.o.length>230?t.o.slice(0,227).replace(/\s+\S*$/,"")+"…":t.o,kind:t.type==="movie"?"Film":"Series",len:t.type==="movie"?rt(t.rt):(t.seasons+(t.seasons>1?" seasons":" season")),img:t.img}));
+const APPS=[
+{n:"Netflix",bg:"#fff",h:'<span style="position:absolute;left:50%;top:50%;white-space:nowrap;font:900 40px/1 \'Helvetica Neue LT Pro\',\'Helvetica Neue\',Impact,sans-serif;font-stretch:condensed;color:#e50914;letter-spacing:0;transform:translate(-50%,-50%) scale(.66,1.15)">NETFLIX</span>'},
+{n:"Prime Video",bg:"linear-gradient(160deg,#0f171e,#00050d)",h:'<div style="text-align:center;font:700 30px/1 Helvetica,Arial,sans-serif;letter-spacing:-1px;color:#fff"><span style="color:#1a98ff">prime</span><span style="font-size:23px"> video</span><svg width="86" height="14" viewBox="0 0 86 14" style="display:block;margin:1px 0 0 22px"><path d="M2 3 Q40 17 82 4" stroke="#1a98ff" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>'},
+{n:"Disney+",bg:"linear-gradient(160deg,#113ccf,#0b1a5a)",h:'<span style="font:400 42px/1 \'Snell Roundhand\',\'Apple Chancery\',cursive;color:#fff">Disney<span style="font:700 30px Helvetica">+</span></span>'},
+{n:"Stremio",bg:"linear-gradient(160deg,#8152d9,#4b2a9f)",h:'<div style="display:flex;align-items:center;gap:8px"><svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="17" fill="none" stroke="#fff" stroke-width="3"/><path d="M15 11 L28 19 L15 27Z" fill="#fff"/></svg><span style="font:700 25px Helvetica,Arial,sans-serif;color:#fff">stremio</span></div>'},
+{n:"HBO Max",bg:"linear-gradient(135deg,#0025e8,#7a2df0 60%,#a83cf5)",h:'<span style="font:800 46px/1 Montserrat,Helvetica,sans-serif;color:#fff;letter-spacing:-1px">max</span>'}];
+const $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ez=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const seg=(t,a,b)=>ez(clamp((t-a)/(b-a)));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const bds=$("bds");
+T.forEach(t=>{const d=document.createElement("div");d.className="bd";d.style.background=`#05060a url(data/${t.img}) center/cover`;bds.appendChild(d)});
+const rowC=$("rowC"),rowA=$("rowA");
+const cards=T.map(t=>{const d=document.createElement("div");d.className="card";d.style.backgroundImage=`url(data/${t.img})`;
+ d.innerHTML=`<div class=sc></div><div class=tx><div class=t>${t.n}</div><div class=s>${[t.kind,t.r].filter(Boolean).join(" · ")}</div></div>`;rowC.appendChild(d);return d});
+const tiles=APPS.map((a,i)=>{const d=document.createElement("div");d.className="tile";d.style.background=a.bg;d.innerHTML=a.h;rowA.appendChild(d);
+ const l=document.createElement("div");l.className="lbl";l.textContent=a.n;l.style.opacity=0;rowA.appendChild(l);return {d,l}});
+// f: focused card (float); fs: fullscreen 0..1; af: banner focus (-1 none)
+function draw(f,fs,af,hint){
+ const near=Math.round(f),dd=Math.abs(f-near),t=T[near];
+ // fullscreen backdrop: the focused title's art, crossfading as the focus moves
+ $("bds").style.opacity=fs;
+ [...bds.children].forEach((e,i)=>e.style.opacity=clamp(1-Math.abs(f-i)*1.4));
+ $("sh").style.background=`linear-gradient(90deg,rgba(5,6,10,${.75*fs}) 0%,rgba(5,6,10,${.25*fs}) 55%,rgba(5,6,10,0) 80%),linear-gradient(0deg,rgba(5,6,10,${.85*fs}) 0%,rgba(5,6,10,0) 48%),linear-gradient(180deg,rgba(5,6,10,${.5*fs}),rgba(5,6,10,0) 26%)`;
+ // fullscreen text
+ const tx=$("txt");tx.style.opacity=fs*clamp(1-dd*3.2);
+ $("title").textContent=t.n;$("m1").textContent=[t.y,t.kind,t.len].filter(Boolean).join(" · ");$("m2").textContent=[t.r,t.g].filter(Boolean).join(" · ");
+ $("over").textContent=t.o;$("cr").innerHTML=`${t.d}<br>With ${t.c}`;
+ // home rows fade and sink as fullscreen opens
+ const sink=fs*60;
+ rowC.style.opacity=1-clamp(fs*1.4);rowC.style.transform=`translateY(${sink}px)`;
+ rowA.style.opacity=1-clamp(fs*1.6);rowA.style.transform=`translateY(${sink}px)`;
+ // cards: whole-item scroll once focus passes the second card (the row shows two cards and the edge of a third)
+ const step=552,off=-step*clamp(f-1,0,T.length-2);
+ cards.forEach((c,i)=>{const k=clamp(1-Math.abs(f-i))*(af<0?1:0);c.style.left=(64+i*step+off)+"px";c.style.transform=`scale(${1+.05*k})`;c.style.outline=`${3*k}px solid rgba(255,255,255,${k})`;});
+ tiles.forEach((o,i)=>{const k=clamp(1-Math.abs(af-i));o.d.style.left=(64+i*194)+"px";o.d.style.transform=`scale(${1+.12*k})`;o.d.style.outline=`${3*k}px solid rgba(255,255,255,${k})`;o.l.style.left=(64+i*194)+"px";o.l.style.opacity=k*(1-fs)});
+ const h=$("hint");h.textContent=hint||"";h.style.display=hint?"block":"none";
+}
+function scene(name,t){
+ if(name==="cards"){ // browse the cards, then drop to the banners
+  let f=0;[1.4,3.2,5.0].forEach(s=>f+=seg(t,s,s+.7));
+  f-=seg(t,6.8,7.4)*3;f=Math.max(f,0);
+  const ban=t>8.2?(t<9.6?0:t<10.8?1:2):-1;
+  draw(f,0,ban,t>1&&t<7?"→  browse trending":(t>8?"↓  open an app":""));
+ } else { // fullscreen: press OK on a card, move to the next title, go back
+  const f=seg(t,6.2,7.0);
+  const fs=seg(t,1.8,2.9)-seg(t,9.6,10.7);
+  const hint=(t>.6&&t<1.8)?"OK  open fullscreen":(t>5.4&&t<6.8)?"→  next title":(t>9.0&&t<10.2)?"Back  return":"";
+  draw(f,fs,-1,hint);
+ }
+}
+window.scene=scene;
+const q=new URLSearchParams(location.search);if(q.get("s"))scene(q.get("s"),parseFloat(q.get("t")||0));
+</script>

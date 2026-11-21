@@ -1,13 +1,41 @@
+<div align="center">
+  <img src="docs/banner.png" alt="Nooko Launcher" style="width: 100%; max-width: 900px; margin-bottom: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+</div>
+
+<h1 align="center">Nooko Launcher</h1>
+
 <p align="center">
-  <img src="docs/banner.png" alt="Nooko Launcher" width="640">
+  <a href="https://github.com/depo23/Nooko-Launcher/stargazers"><img src="https://img.shields.io/github/stars/depo23/Nooko-Launcher?style=for-the-badge&logo=starship&labelColor=0d0d0d&color=3DDC97" alt="stars"/></a>
+  &nbsp;
+  <a href="https://github.com/depo23/Nooko-Launcher/releases"><img src="https://img.shields.io/github/downloads/depo23/Nooko-Launcher/total?style=for-the-badge&logo=download&labelColor=0d0d0d&color=3DDC97" alt="downloads"/></a>
+  &nbsp;
+  <a href="https://github.com/depo23/Nooko-Launcher/releases/latest"><img src="https://img.shields.io/github/v/release/depo23/Nooko-Launcher?style=for-the-badge&logo=github&labelColor=0d0d0d&color=3DDC97" alt="version"/></a>
+  &nbsp;
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/depo23/Nooko-Launcher?style=for-the-badge&labelColor=0d0d0d&color=3DDC97" alt="license"/></a>
 </p>
 
-<p align="center"><b>A calm, beautiful home screen for your Android TV and Google TV.</b><br>
-Your apps, what to watch next, and a picture you love. Nothing else.</p>
-
 <p align="center">
-  <a href="https://github.com/depo23/Nooko-Launcher/releases/latest"><b>Download</b></a>
+  <b>A calm, beautiful home screen for your Android TV and Google TV.</b><br>
+  Your apps, what to watch next, and a picture you love. Nothing else.
 </p>
+
+---
+
+## Download
+
+<div align="center">
+  <a href="https://github.com/depo23/Nooko-Launcher/releases/latest">
+    <img src="https://img.shields.io/badge/Download-Nooko--Launcher.apk-3DDC97?style=for-the-badge&logo=android&logoColor=white&labelColor=0d0d0d" alt="Download APK"/>
+  </a>
+  <br><br>
+  <a href="docs/promo/nooko-full.mp4">
+    <img src="docs/promo/nooko-full-readme.gif" alt="Nooko Launcher in action: open a film fullscreen, browse, go back" width="720">
+  </a>
+  <br>
+  <sub>Click the preview for the full-quality video.</sub>
+</div>
+
+Download the `.apk` and install it on your TV. Details in [Get started](#get-started).
 
 ---
 
@@ -18,6 +46,8 @@ Most TV home screens are crowded with ads and suggestions you never asked for. N
 - **No ads. No account. No tracking.**
 - **Light.** A tiny download that runs smoothly, even on small streaming sticks.
 - **Yours.** Every part of the screen can be changed to fit your taste.
+
+---
 
 ## What you get
 
@@ -44,6 +74,8 @@ Most TV home screens are crowded with ads and suggestions you never asked for. N
 **Speaks your language**
 English, Italiano, Français, Español, Português (Brasil), Türkçe and العربية.
 
+---
+
 ## Make it yours
 
 Open **Settings** from the top bar. You can change:
@@ -59,6 +91,8 @@ Open **Settings** from the top bar. You can change:
 | **Safety** | A PIN for the settings |
 
 Everything you set can be saved to one file and restored on another TV.
+
+---
 
 ## Get started
 
@@ -97,9 +131,13 @@ If you already use other accessibility services, the third line replaces them. U
 
 **Prefer an app?** A third-party tool such as Home-on-Fire can also send the Home button to Nooko.
 
+---
+
 ## Privacy
 
 Nooko goes online only for what you turn on: film and series information from TMDB, the weather, wallpapers from Bing or Reddit, and update checks. There are no ads, no analytics and no account. Your key and sign-ins stay on your TV and are saved in a backup only if you ask.
+
+---
 
 ## Troubleshooting
 
@@ -107,9 +145,18 @@ Nooko goes online only for what you turn on: film and series information from TM
 - **No film cards.** Add your TMDB key in **Settings → TMDB trending**, and check the TV is online.
 - **Something else.** [Open an issue](https://github.com/depo23/Nooko-Launcher/issues/new/choose). Please tell us the TV model and Android version.
 
-## Support Nooko
+## Support
 
-Nooko is free, with no ads. If it makes your TV nicer, you can [buy it a coffee on Ko-fi](https://ko-fi.com/nooko). On your TV, select the heart in the top bar and scan the code with your phone.
+<div align="center">
+  <img src="docs/kofi-qr.png" alt="Ko-fi QR code" width="180"><br><br>
+  <a href="https://ko-fi.com/nooko">
+    <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Ko--fi-3DDC97?style=for-the-badge&logo=kofi&logoColor=white&labelColor=0d0d0d" alt="Support on Ko-fi"/>
+  </a>
+</div>
+
+Nooko is free, with no ads and no tracking. If it makes your TV nicer, scan the code with your phone or use the button. On your TV, select the heart in the top bar to see the same code.
+
+---
 
 ## Credits and licence
 
