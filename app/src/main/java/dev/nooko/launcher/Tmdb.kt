@@ -44,10 +44,10 @@ internal object Tmdb {
 
     /**
      * 30 of this week's trending films and shows that have a backdrop, in a new random order each time. TMDB gives 20 a page,
-     * so the first two pages are read (40) and 30 are picked from them.
+     * so the first five pages are read (100) and 30 are picked from them: a wider pool, so the row changes more from one refresh to the next.
      */
     fun trending(key: String): List<Hero> {
-        val found = (1..2).flatMap { page ->
+        val found = (1..5).flatMap { page ->
             val results = request("trending/all/week?page=$page", key)?.getJSONArray("results") ?: throw IOException("TMDB rejected the key")
             parseTrending(results)
         }

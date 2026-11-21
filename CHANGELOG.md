@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.0.9
+
+- **More variety in the TMDB cards.** Nooko Launcher now picks the cards from 100 trending titles, not 40. The row changes more each time it refreshes.
+
 ## 1.0.8
 
 - **Set up without a computer.** The Home button, the TMDB screensaver and the screensaver timer need one permission that only adb can give. Select **Allow it now**. Nooko Launcher gives it to itself. Turn on ADB debugging first, then answer one question on the TV.
