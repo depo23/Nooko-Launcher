@@ -16,7 +16,7 @@
 
 <p align="center">
   <b>A calm, beautiful home screen for your Android TV and Google TV.</b><br>
-  Your apps, what to watch next, and a picture you love. Nothing else.
+  Your apps, what to watch next, and your style. Nothing else.
 </p>
 
 ---

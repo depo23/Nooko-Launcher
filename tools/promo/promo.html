@@ -43,11 +43,11 @@ html,body{width:1280px;height:720px;overflow:hidden;background:#05060a;font-fami
 const rt=m=>m?`${Math.floor(m/60)}h ${String(m%60).padStart(2,"0")}min`:"";
 const T=TM.map(t=>({n:t.n,y:t.y,r:t.r&&t.r!=="0.0"?"★ "+t.r:"",g:t.g.join(", "),d:t.dir?"Directed by "+t.dir:"",c:t.cast.join(", "),o:t.o.length>230?t.o.slice(0,227).replace(/\s+\S*$/,"")+"…":t.o,kind:t.type==="movie"?"Film":"Series",len:t.type==="movie"?rt(t.rt):(t.seasons+(t.seasons>1?" seasons":" season")),img:t.img}));
 const APPS=[
-{n:"Netflix",bg:"#fff",h:'<span style="position:absolute;left:50%;top:50%;white-space:nowrap;font:900 40px/1 \'Helvetica Neue LT Pro\',\'Helvetica Neue\',Impact,sans-serif;font-stretch:condensed;color:#e50914;letter-spacing:0;transform:translate(-50%,-50%) scale(.66,1.15)">NETFLIX</span>'},
-{n:"Prime Video",bg:"linear-gradient(160deg,#0f171e,#00050d)",h:'<div style="text-align:center;font:700 30px/1 Helvetica,Arial,sans-serif;letter-spacing:-1px;color:#fff"><span style="color:#1a98ff">prime</span><span style="font-size:23px"> video</span><svg width="86" height="14" viewBox="0 0 86 14" style="display:block;margin:1px 0 0 22px"><path d="M2 3 Q40 17 82 4" stroke="#1a98ff" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>'},
-{n:"Disney+",bg:"linear-gradient(160deg,#113ccf,#0b1a5a)",h:'<span style="font:400 42px/1 \'Snell Roundhand\',\'Apple Chancery\',cursive;color:#fff">Disney<span style="font:700 30px Helvetica">+</span></span>'},
-{n:"Stremio",bg:"linear-gradient(160deg,#8152d9,#4b2a9f)",h:'<div style="display:flex;align-items:center;gap:8px"><svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="17" fill="none" stroke="#fff" stroke-width="3"/><path d="M15 11 L28 19 L15 27Z" fill="#fff"/></svg><span style="font:700 25px Helvetica,Arial,sans-serif;color:#fff">stremio</span></div>'},
-{n:"HBO Max",bg:"linear-gradient(135deg,#0025e8,#7a2df0 60%,#a83cf5)",h:'<span style="font:800 46px/1 Montserrat,Helvetica,sans-serif;color:#fff;letter-spacing:-1px">max</span>'}];
+{n:"Netflix",bg:"#fff",h:'<img src="../../docs/site/brands/netflix.svg" style="width:62%;height:auto">'},
+{n:"Prime Video",bg:"#fff",h:'<img src="../../docs/site/brands/prime.png" style="width:68%;height:auto">'},
+{n:"Disney+",bg:"linear-gradient(160deg,#113ccf,#0b1a5a)",h:'<img src="../../docs/site/brands/disney.svg" style="width:62%;height:auto">'},
+{n:"Stremio",bg:"linear-gradient(160deg,#8152d9,#4b2a9f)",h:'<div style="display:flex;align-items:center;gap:8px;color:#fff;font:700 25px Helvetica,Arial,sans-serif"><img src="../../docs/site/brands/stremio.svg" style="width:40px;height:40px">stremio</div>'},
+{n:"Max",bg:"linear-gradient(135deg,#0025e8,#7a2df0 60%,#a83cf5)",h:'<img src="../../docs/site/brands/max.svg" style="width:52%;height:auto">'}];
 const $=id=>document.getElementById(id);
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
 const ez=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
