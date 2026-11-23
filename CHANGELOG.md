@@ -14,6 +14,10 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.1.0
+
+- **New support link.** The heart button and the support page now open ko-fi.com/zenmode. The QR code does not change.
+
 ## 1.0.9
 
 - **More variety in the TMDB cards.** Nooko Launcher now picks the cards from 100 trending titles, not 40. The row changes more each time it refreshes.
