@@ -149,7 +149,7 @@ Nooko goes online only for what you turn on: film and series information from TM
 
 <div align="center">
   <img src="docs/kofi-qr.png" alt="Ko-fi QR code" width="180"><br><br>
-  <a href="https://ko-fi.com/nooko">
+  <a href="https://ko-fi.com/zenmode">
     <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Ko--fi-3DDC97?style=for-the-badge&logo=kofi&logoColor=white&labelColor=0d0d0d" alt="Support on Ko-fi"/>
   </a>
 </div>

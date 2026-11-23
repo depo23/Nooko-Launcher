@@ -5037,7 +5037,7 @@ class MainActivity : Activity() {
         const val RIM_SIDE_LIT = 0x17FFFFFF
         const val PANEL_EDGE = 0x0FFFFFFF // white 6%, the settings panel's left edge
         const val HELP_URL = "https://github.com/depo23/Nooko-Launcher#use-nooko-as-default-home"
-        const val KOFI_URL = "https://ko-fi.com/nooko"
+        const val KOFI_URL = "https://ko-fi.com/zenmode"
         const val TOGGLE_ON = "\u0000on" // row values drawn as a switch instead of text
         const val TOGGLE_OFF = "\u0000off"
         const val BANNER_DIM = 0.3f // black laid over a colour banner at rest, so the selected one stands out
