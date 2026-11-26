@@ -473,7 +473,7 @@ internal fun MainActivity.renderSettings(at: Int = 0) {
         }) { pickScreensaver() },
         R.string.test_screensaver to Triple(getString(R.string.test_screensaver), "") { testScreensaver() },
         R.string.screensaver_timing to Triple(getString(R.string.screensaver_timing), screensaverDelayName()) { pickScreensaverDelay() },
-        R.string.setup_home to Triple(getString(R.string.setup_home), "") { closeLauncherSettings(); startHomeSetup() },
+        R.string.setup_home to Triple(getString(R.string.setup_home), if (homeSetUp()) getString(R.string.on) else "") { closeLauncherSettings(); startHomeSetup() },
         R.string.home_button to Triple(getString(R.string.home_button), toggle(homeServiceOn())) { toggleHomeButton() },
         R.string.smooth_volume to Triple(getString(R.string.smooth_volume), toggle(prefs.getBoolean("smooth_volume", false))) {
             prefs.edit().putBoolean("smooth_volume", !prefs.getBoolean("smooth_volume", false)).commit()

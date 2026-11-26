@@ -14,6 +14,12 @@ Write every entry in ASD-STE100 Simplified Technical English:
 
 Put changes that are not released under `## Unreleased`. Rename that heading to the version number when you release.
 
+## 1.2.0
+
+- **New Home setup.** On first start, and from **Run setup again** in settings, Nooko Launcher shows every way to make Home open it. The best way for your TV is first.
+- **Three steps on the TV.** Select **On this TV**. Turn on Developer options, then USB debugging, then select **Connect**. Each step ticks itself when you come back with Back.
+- **Other ways.** You can also set it from a computer with one adb command, or by hand in Accessibility.
+
 ## 1.1.0
 
 - **New support link.** The heart button and the support page now open ko-fi.com/zenmode. The QR code does not change.

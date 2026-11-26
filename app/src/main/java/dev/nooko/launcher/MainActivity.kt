@@ -861,7 +861,8 @@ class MainActivity : Activity() {
     private var homeTest = 0 // the way being checked (1 role, 2 service) while waiting for a Home press
     private var leftDuringTest = false
     private var previewAt = -1 // debug builds: which popup the preview is on, -1 when not previewing
-    private var restrictedTried = false // App info's "Allow restricted settings" already offered this round
+    private var restrictedTried = false
+    internal var stepsRefresh: (() -> Unit)? = null // the three-step screen is open: re-read the TV's settings on return // App info's "Allow restricted settings" already offered this round
 
     /** Google TV takes the home role but its own launcher still gets Home, so only the service works there. */
     internal fun googleTv() = fakeDevice?.let { it == "google" } ?: try {
@@ -894,11 +895,7 @@ class MainActivity : Activity() {
 
     internal fun startHomeSetup() {
         restrictedTried = false
-        // Fire OS takes the role request and ignores it; Google TV grants it and still opens its own launcher.
-        if (fireTv() || googleTv()) return tryHomeService()
-        val roles = if (Build.VERSION.SDK_INT >= 29) getSystemService(RoleManager::class.java) else null
-        if (roles != null && roles.isRoleAvailable(RoleManager.ROLE_HOME) && !roles.isRoleHeld(RoleManager.ROLE_HOME)) rolePopup()
-        else afterHomeRole()
+        choosePopup() // HomeSetup.kt: every way, the best one for this TV first
     }
 
     private fun afterHomeRole() = if (isDefaultHome() || homeServiceOn()) testPopup(1) else tryHomeService()
@@ -906,7 +903,7 @@ class MainActivity : Activity() {
     /** Service still off after Accessibility: on Android 13+ a sideloaded app's toggle is greyed until App info allows it. */
     private fun serviceStillOff() = if (sdk() >= 33 && !restrictedTried) restrictedPopup() else adbPopup()
 
-    private fun tryHomeService() {
+    internal fun tryHomeService() {
         prefs.edit().remove("home_off").apply()
         ensureHomeService() // works where the adb permission was granted
         if (homeServiceOn()) testPopup(2) else servicePopup()
@@ -914,6 +911,7 @@ class MainActivity : Activity() {
 
     /** Back from the role dialog, Accessibility settings, or another home screen after a Home press. */
     private fun homeSetupResumed() {
+        stepsRefresh?.let { if (setupDialog?.isShowing == true) return it() }
         if (setupStep == 2) {
             setupStep = 0
             if (homeServiceOn()) testPopup(2) else serviceStillOff()
@@ -927,7 +925,7 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun rolePopup() = homePopup(1, getString(R.string.setup_role_title), getString(R.string.setup_role_body), null,
+    internal fun rolePopup() = homePopup(1, getString(R.string.setup_role_title), getString(R.string.setup_role_body), null,
         getString(R.string.setup_continue) to {
             setupStep = 1
             @Suppress("DEPRECATION")
@@ -1037,7 +1035,7 @@ class MainActivity : Activity() {
     }
 
     /** The one-time grant lets Nooko Launcher switch the service on itself, past the greyed-out toggle. */
-    private fun adbPopup() {
+    internal fun adbPopup() {
         val mono = Typeface.MONOSPACE
         val code = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -1110,7 +1108,8 @@ class MainActivity : Activity() {
      * A card in the middle of the screen over the dimmed home screen, in the hold menus' colours.
      * [frosted] makes it Frosted glass whatever the Glass setting is, when there is a picture to blur.
      */
-    internal fun homePopup(step: Int, title: String, body: String?, extra: View?, vararg buttons: Pair<String, () -> Unit>, frosted: Boolean = false) {
+    internal fun homePopup(step: Int, title: String, body: String?, extra: View?, vararg buttons: Pair<String, () -> Unit>, frosted: Boolean = false, wide: Boolean = false) {
+        stepsRefresh = null
         setupDialog?.let { setupDialog = null; it.dismiss() } // replaced, not closed: the dismiss listener leaves the flow alone
         val frost = frosted && Backdrop.of(currentWallpaper()) != Backdrop.PLAIN
         val card: LinearLayout = if (frost || glassActive()) glassSurface(dp(20).toFloat()).also { box ->
@@ -1145,7 +1144,7 @@ class MainActivity : Activity() {
         dialog.setContentView(card)
         dialog.window?.run {
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setLayout(dp(if (extra != null) 600 else 480), ViewGroup.LayoutParams.WRAP_CONTENT)
+            setLayout(dp(if (wide) 820 else if (extra != null) 600 else 480), ViewGroup.LayoutParams.WRAP_CONTENT)
             setDimAmount((if (frost) GlassStyle.FROSTED else glassLook().active)?.dim ?: 0.6f) // glass shows what is behind, so it needs less dimming
         }
         dialog.setOnDismissListener {
@@ -1170,6 +1169,8 @@ class MainActivity : Activity() {
             3 -> restrictedPopup()
             4 -> adbPopup()
             5 -> donePopup()
+            6 -> choosePopup()
+            7 -> stepsPopup()
             else -> setupDialog?.dismiss()
         }
     }
